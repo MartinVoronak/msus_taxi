@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+  <!-- ROLES -->
+  <role>
+    <id>zakaznik</id>
+    <name>Zakaznik</name>
+  </role>
+  <role>
+    <id>sofer</id>
+    <name>Sofer</name>
+  </role>
+  <role>
+    <id>system</id>
+    <name>System</name>
+  </role>
+  <!-- TRANSITIONS -->
+	<transition>
+		<id>2</id>
+		<x>325</x>
+		<y>72</y>
+		<label>Vyplnit udaje [sofer]</label>
+	</transition>
+	<transition>
+		<id>4</id>
+		<x>572</x>
+		<y>67</y>
+		<label>Profil [sofer | zakaznik]</label>
+    <roleRef>
+      <id>sofer</id>
+      <logic>
+        <perform>true</perform>
+      </logic>
+    </roleRef>
+    <roleRef>
+      <id>zakaznik</id>
+      <logic>
+        <perform>true</perform>
+      </logic>
+    </roleRef>
+	</transition>
+	<!-- PLACES -->
+	<place>
+		<id>1</id>
+		<x>118</x>
+		<y>73</y>
+		<label>inicializacia</label>
+		<tokens>1</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>3</id>
+		<x>447</x>
+		<y>210</y>
+		<label>vytvoreny sofer</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<!-- ARCS -->
+	<arc>
+		<id>5</id>
+		<type>regular</type>
+		<sourceId>1</sourceId>
+		<destinationId>2</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>6</id>
+		<type>regular</type>
+		<sourceId>2</sourceId>
+		<destinationId>3</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>7</id>
+		<type>read</type>
+		<sourceId>3</sourceId>
+		<destinationId>4</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+</document>

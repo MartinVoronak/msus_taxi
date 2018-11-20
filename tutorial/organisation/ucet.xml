@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+	<id>1</id>
+	<initials>ACC</initials>
+	<icon>account_balance_wallet</icon>
+	<defaultRole>false</defaultRole>
+	<!--ROLE-->
+	<role>
+		<id>system</id>
+		<title>Systém</title>
+	</role>
+	<role>
+		<id>admin</id>
+		<title>Admin</title>
+	</role>
+	<!--DATA-->
+	<data type="text">
+		<id>org_ico</id>
+		<title>IČO organizácie</title>
+	</data>
+	<data type="text">
+		<id>organization_ico</id>
+		<title>IČO Organizácie</title>
+	</data>
+	<data type="text">
+		<id>account_number</id>
+		<title>Číslo účtu</title>
+	</data>
+	<data type="text">
+		<id>bank_name</id>
+		<title>Názov banky</title>
+	</data>
+	<data type="text">
+		<id>bank_code</id>
+		<title>Kód banky</title>
+	</data>
+	<data type="enumeration">
+		<id>currency</id>
+		<title>Mena</title>
+		<values>Euro</values>
+		<values>Dolár</values>
+		<values>Libra</values>
+		<init>Euro</init>
+	</data>
+	<data type="text">
+		<id>note</id>
+		<title>Poznámka</title>
+	</data>
+    <!-- important -->
+    <data type="boolean">
+        <id>is_active</id>
+        <title></title>
+        <init>false</init>
+    </data>
+	<!-- TRANSITIONS -->
+	<transition>
+		<id>2</id>
+		<x>278</x>
+		<y>178</y>
+		<label>Vytvor účet</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>admin</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataGroup>
+			<id>create_acc_grp</id>
+			<dataRef>
+				<id>account_number</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>bank_code</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>currency</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>note</id>
+				<logic>
+					<behavior>editable</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+
+        <event type="finish">
+            <id>1</id>
+            <actions phase="post">
+                <action>
+                    is_active: f.is_active;
+
+                    change is_active value { true }
+                </action>
+            </actions>
+        </event>
+	</transition>
+	<transition>
+		<id>4</id>
+		<x>309</x>
+		<y>314</y>
+		<label>Deaktivovať účet</label>
+		<roleRef>
+			<id>admin</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+
+        <event type="finish">
+            <id>1</id>
+            <actions phase="post">
+                <action>
+                    is_active: f.is_active;
+
+                    change is_active value { false }
+                </action>
+            </actions>
+        </event>
+	</transition>
+	<transition>
+		<id>5</id>
+		<x>499</x>
+		<y>308</y>
+		<label>Oživiť účet</label>
+		<roleRef>
+			<id>admin</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+
+        <event type="finish">
+            <id>1</id>
+            <actions phase="post">
+                <action>
+                    is_active: f.is_active;
+
+                    change is_active value { true }
+                </action>
+            </actions>
+        </event>
+	</transition>
+	<transition>
+		<id>7</id>
+		<x>447</x>
+		<y>56</y>
+		<label>Zobraziť účet</label>
+		<roleRef>
+			<id>admin</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataGroup>
+			<id>create_acc_grp</id>
+			<dataRef>
+				<id>org_ico</id>
+				<logic>
+					<behavior>visible</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>account_number</id>
+				<logic>
+					<behavior>visible</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>bank_name</id>
+				<logic>
+					<behavior>visible</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>bank_code</id>
+				<logic>
+					<behavior>visible</behavior>
+
+					<action trigger="get">
+                        bank_code: f.this,
+                        bank_name: f.bank_name;
+
+                        def bankCase = getBankCaseByBankCode(bank_code.value as String)
+                        def dataSet = getDataSetByCaseId(bankCase.stringId)
+
+                        change bank_name value { return dataSet.get("bank_name").value }
+                    </action>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>currency</id>
+				<logic>
+					<behavior>visible</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>note</id>
+				<logic>
+					<behavior>visible</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+	</transition>
+	<transition>
+		<id>8</id>
+		<x>573</x>
+		<y>177</y>
+		<label>Editovať účet</label>
+		<roleRef>
+			<id>admin</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataGroup>
+			<id>create_acc_grp</id>
+			<dataRef>
+				<id>org_ico</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>account_number</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>bank_name</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>bank_code</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>currency</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>note</id>
+				<logic>
+					<behavior>editable</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+	</transition>
+	<!-- PLACES -->
+	<place>
+		<id>1</id>
+		<x>181</x>
+		<y>182</y>
+		<label>IN</label>
+		<tokens>1</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>3</id>
+		<x>385</x>
+		<y>196</y>
+		<label>active</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>6</id>
+		<x>393</x>
+		<y>398</y>
+		<label>inactive</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<!-- ARCS -->
+	<arc>
+		<id>9</id>
+		<type>regular</type>
+		<sourceId>1</sourceId>
+		<destinationId>2</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>10</id>
+		<type>regular</type>
+		<sourceId>2</sourceId>
+		<destinationId>3</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>11</id>
+		<type>regular</type>
+		<sourceId>3</sourceId>
+		<destinationId>4</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>12</id>
+		<type>regular</type>
+		<sourceId>4</sourceId>
+		<destinationId>6</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>13</id>
+		<type>regular</type>
+		<sourceId>6</sourceId>
+		<destinationId>5</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>14</id>
+		<type>regular</type>
+		<sourceId>5</sourceId>
+		<destinationId>3</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>15</id>
+		<type>regular</type>
+		<sourceId>3</sourceId>
+		<destinationId>8</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>16</id>
+		<type>regular</type>
+		<sourceId>8</sourceId>
+		<destinationId>3</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>17</id>
+		<type>read</type>
+		<sourceId>3</sourceId>
+		<destinationId>7</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+</document>

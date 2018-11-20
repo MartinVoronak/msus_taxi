@@ -1,0 +1,1935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+    <id>1</id>
+    <initials>ORG</initials>
+    <icon>business</icon>
+    <defaultRole>false</defaultRole>
+
+    <caseName>Nová organizácia</caseName>
+    <!-- ROLES -->
+    <role>
+        <id>system</id>
+        <title>Systém</title>
+    </role>
+    <role>
+        <id>admin</id>
+        <title>Administrátor</title>
+    </role>
+    <role>
+        <id>manager</id>
+        <title>Manažér</title>
+    </role>
+    <role>
+        <id>user</id>
+        <title>Užívateľ</title>
+    </role>
+    <!-- DATA -->
+    <data type="enumeration">
+        <id>organization_type</id>
+        <title name="pravna_forma">Právna forma</title>
+        <values>Právnická osoba, platca DPH</values>
+        <values>Právnická osoba, neplatca DPH</values>
+        <values>Fyzická osoba, platca DPH</values>
+        <values>Fyzická osoba, neplatca DPH</values>
+        <values>Občan</values>
+        <init>Právnická platca</init>
+    </data>
+    <i18n locale="en">
+        <i18nString name="pravna_forma">Type</i18nString>
+    </i18n>
+    <!--ZAKLADNE UDAJE-->
+        <!--PRE NEOBCANA-->
+    <data type="text">
+        <id>ico</id>
+        <title>IČO</title>
+        <placeholder></placeholder>
+        <desc></desc>
+        <!--<valid>regex("[0-9]{8}")</valid>-->
+    </data>
+    <data type="number">
+        <id>dic</id>
+        <title>DIČ</title>
+    </data>
+    <data type="text">
+        <id>ic_dph</id>
+        <title>IČ DPH</title>
+    </data>
+    <data type="text">
+        <id>organization_short_name</id>
+        <title>Skrátený názov</title>
+    </data>
+    <data type="text">
+        <id>organization_name</id>
+        <title>Celý názov</title>
+    </data>
+        <!--PRE OBCANA-->
+    <data type="text">
+        <id>citizen_firstname</id>
+        <title>Meno</title>
+    </data>
+    <data type="text">
+        <id>citizen_surname</id>
+        <title>Priezvisko</title>
+    </data>
+
+    <!--ADRESA-->
+    <data type="text" >
+        <id>street</id>
+        <title>Ulica</title>
+    </data>
+    <data type="text">
+        <id>street_number</id>
+        <title>Číslo</title>
+    </data>
+    <data type="text">
+        <id>city</id>
+        <title>Mesto</title>
+    </data>
+    <data type="text">
+        <id>postal_code</id>
+        <title>PSČ</title>
+    </data>
+
+    <!--FAKTURACNE INFORMACIE-->
+    <data type="text">
+        <id>select_code</id>
+        <title>Výberový kód</title>
+    </data>
+    <data type="text">
+        <id>billing_organization</id>
+        <title>Fakturačná organizácia</title>
+    </data>
+    <data type="number">
+        <id>invoice_incoming_due_days</id>
+        <title>Splatnosť vyšlej faktúry</title>
+        <init>14</init>
+    </data>
+    <data type="number">
+        <id>invoice_outcoming_due_days</id>
+        <title>Splatnosť došlej faktúry</title>
+    </data>
+    <data type="number">
+        <id>limit_after_payment_due</id>
+        <title>Limit pohľadávok po lehote splatnosti</title>
+    </data>
+    <data type="number">
+        <id>total_limit</id>
+        <title>Limit pohľadávok bez ohľadu na splatnosť</title>
+    </data>
+
+    <!-- Pridavanie fakturacnej organizacie -->
+    <data type="enumeration">
+        <id>billing_org_case</id>
+        <title>Fakturačná organizácia</title>
+    </data>
+    <data type="enumeration">
+        <id>billing_org_case_ids</id>
+        <title></title>
+    </data>
+    <data type="text">
+        <id>selected_billing_org_case_string_id</id>
+        <title></title>
+    </data>
+
+    <!-- Pridavanie kontaktnych udajov -->
+
+    <!-- kontaktne udaje -->
+    <data type="text">
+        <id>title</id>
+        <title>Titul</title>
+    </data>
+    <data type="text">
+        <id>contact_name</id>
+        <title>Meno</title>
+    </data>
+    <data type="text">
+        <id>contact_surname</id>
+        <title>Priezvisko</title>
+    </data>
+    <data type="text">
+        <id>job_title</id>
+        <title>Pracovná pozícia</title>
+    </data>
+    <data type="text">
+        <id>telephone</id>
+        <title>Telefón</title>
+    </data>
+    <data type="text">
+        <id>mail</id>
+        <title>Mail</title>
+    </data>
+
+    <!-- Pridavanie bankoveho uctu -->
+    <data type="text">
+        <id>bank_name</id>
+        <title>Názov banky</title>
+    </data>
+    <data type="text">
+        <id>bank_code</id>
+        <title>Kód banky</title>
+    </data>
+    <data type="text">
+        <id>swift_code</id>
+        <title>Swift kód</title>
+    </data>
+
+    <data type="enumeration">
+        <id>bank_case</id>
+        <title>Banka</title>
+    </data>
+    <data type="enumeration">
+        <id>bank_case_ids</id>
+        <title></title>
+    </data>
+    <data type="text">
+        <id>selected_bank_case_string_id</id>
+        <title></title>
+    </data>
+
+    <!-- Pridavanie uctov -->
+    <data type="text">
+        <id>account_number</id>
+        <title>Číslo účtu</title>
+    </data>
+
+    <data type="enumeration">
+        <id>account_case</id>
+        <title>Účet</title>
+    </data>
+    <data type="enumeration">
+        <id>account_case_ids</id>
+        <title></title>
+    </data>
+    <data type="text">
+        <id>selected_account_case_string_id</id>
+        <title></title>
+    </data>
+
+    <!--Contact people-->
+    <data type="text">
+        <id>contact_person_name_1</id>
+        <title>Kontaktná osoba 1</title>
+    </data>
+    <data type="text">
+        <id>contact_person_email_1</id>
+        <title>Email</title>
+    </data>
+
+    <data type="text">
+        <id>contact_person_name_2</id>
+        <title>Kontaktná osoba 2</title>
+    </data>
+    <data type="text">
+        <id>contact_person_email_2</id>
+        <title>Email</title>
+    </data>
+
+    <data type="text">
+        <id>contact_person_name_3</id>
+        <title>Kontaktná osoba 3</title>
+    </data>
+    <data type="text">
+        <id>contact_person_email_3</id>
+        <title>Email</title>
+    </data>
+
+    <!--Organisation bank accs-->
+    <data type="text">
+        <id>organisation_account_bank_1</id>
+        <title>Banka</title>
+    </data>
+    <data type="text">
+        <id>organisation_account_number_1</id>
+        <title>Účet číslo 1</title>
+    </data>
+    <data type="text">
+        <id>organisation_account_bank_2</id>
+        <title>Banka</title>
+    </data>
+    <data type="text">
+        <id>organisation_account_number_2</id>
+        <title>Účet číslo 2</title>
+    </data>
+    <data type="text">
+        <id>organisation_account_bank_3</id>
+        <title>Banka</title>
+    </data>
+    <data type="text">
+        <id>organisation_account_number_3</id>
+        <title>Účet číslo 3</title>
+    </data>
+
+    <!-- helper -->
+    <data type="text">
+        <id>selected_contact_case_string_id</id>
+        <title></title>
+    </data>
+
+    <data type="enumeration">
+        <id>contact_case</id>
+        <title>Kontaktný údaj</title>
+    </data>
+
+    <data type="boolean">
+        <id>is_active</id>
+        <title>Is active</title>
+    </data>
+
+    <!-- always hidden -->
+    <data type="enumeration">
+        <id>contact_case_ids</id>
+        <title></title>
+    </data>
+
+    <!--  -->
+    <!-- TRANSITIONS -->
+    <transition>
+        <id>6661</id>
+        <x>300</x>
+        <y>260</y>
+        <label>Vytvor organizáciu</label>
+        <assignPolicy>auto</assignPolicy>
+        <roleRef>
+            <id>admin</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>manager</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <dataGroup>
+            <id>organization_main_info_grp</id>
+            <title>Základné informácie</title>
+            <dataRef>
+                <id>organization_type</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                    <action trigger="set">
+                        typ: f.this,
+                        trans: t.6661,
+
+                        ico: f.ico,
+                        dic: f.dic,
+                        icDph: f.ic_dph,
+                        shortName: f.organization_short_name,
+                        fullName: f.organization_name,
+
+                        firstName: f.citizen_firstname,
+                        surname: f.citizen_surname;
+
+                        if(hasIco(typ.value)) {
+                            make ico, editable on trans when { true }
+                            make ico, required on trans when { true }
+
+                            make dic, editable on trans when { true }
+                            make dic, required on trans when { true }
+
+                            make shortName, editable on trans when { true }
+                            make shortName, required on trans when { true }
+
+                            make fullName, editable on trans when { true }
+                            make fullName, required on trans when { true }
+
+                            if(isDphPayer(typ.value)) {
+                                make icDph, editable on trans when { true }
+                                make icDph, required on trans when { true }
+                            } else {
+                                make icDph, hidden on trans when { true }
+                                change icDph value { null }
+                            }
+
+                            make firstName, hidden on trans when { true }
+                            make surname, hidden on trans when { true }
+
+                            change firstName value { null }
+                            change surname value { null }
+                        }
+                        else {
+                            make firstName, editable on trans when { true }
+                            make firstName, required on trans when { true }
+
+                            make surname, editable on trans when { true }
+                            make surname, required on trans when { true }
+
+                            make ico, hidden on trans when { true }
+                            make dic, hidden on trans when { true }
+                            make icDph, hidden on trans when { true }
+                            make shortName, hidden on trans when { true }
+                            make fullName, hidden on trans when { true }
+
+                            change ico value { null }
+                            change dic value { null }
+                            change icDph value { null }
+                            change shortName value { null }
+                            change fullName value { null }
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>ico</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>dic</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>ic_dph</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organization_short_name</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organization_name</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <!--OBCAN-->
+            <dataRef>
+                <id>citizen_firstname</id>
+                <logic>
+                    <behavior>hidden</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>citizen_surname</id>
+                <logic>
+                    <behavior>hidden</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <dataGroup>
+            <id>address_grp</id>
+            <title>Sídlo</title>
+            <dataRef>
+                <id>street</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>street_number</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>city</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>postal_code</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <dataGroup>
+            <id>billing_info_grp</id>
+            <title>Fakturačné informácie</title>
+            <dataRef>
+                <id>select_code</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>billing_org_case</id>
+                <logic>
+                    <behavior>editable</behavior>
+
+                    <action trigger="get">
+                        billing_org_case: f.billing_org_case,
+                        billing_org_case_ids: f.billing_org_case_ids;
+
+                        def orgOptions = getOrganisationEnumerations()
+
+                        change billing_org_case choices {
+                            return [" "] + orgOptions["enum_values"]
+                        }
+
+                        change billing_org_ids choices {
+                            return ["none"] + orgOptions["enum_keys"]
+                        }
+                    </action>
+
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>invoice_incoming_due_days</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>invoice_outcoming_due_days</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>limit_after_payment_due</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>total_limit</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <event type="finish">
+            <id>1</id>
+            <actions phase="pre">
+                <action>
+                    is_active: f.is_active;
+
+                    change is_active value { true }
+                </action>
+
+                <action>
+                    selected_billing_org_case_string_id: f.selected_billing_org_case_string_id,
+                    billing_organization: f.billing_organization,
+                    billing_org_case: f.billing_org_case,
+                    billing_org_case_ids: f.billing_org_case_ids;
+
+                    change billing_organization value {
+                        billing_org_case.value as String
+                    }
+                </action>
+            </actions>
+        </event>
+    </transition>
+    <transition>
+        <id>6662</id>
+        <x>460</x>
+        <y>100</y>
+        <label>Informácie o organizácii</label>
+        <roleRef>
+            <id>admin</id>
+            <logic>
+                <view>true</view>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>manager</id>
+            <logic>
+                <view>true</view>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>user</id>
+            <logic>
+                <view>true</view>
+            </logic>
+        </roleRef>
+        <dataGroup>
+            <id>organization_main_info_grp</id>
+            <title>Základné informácie</title>
+            <dataRef>
+                <id>organization_type</id>
+                <logic>
+                    <behavior>visible</behavior>
+                    <action trigger="get">
+                        typ: f.this,
+                        trans: t.6662,
+
+                        ico: f.ico,
+                        dic: f.dic,
+                        icDph: f.ic_dph,
+                        shortName: f.organization_short_name,
+                        fullName: f.organization_name,
+
+                        firstName: f.citizen_firstname,
+                        surname: f.citizen_surname;
+
+                        if(hasIco(typ.value)) {
+                            make ico, visible on trans when { true }
+                            make dic, visible on trans when { true }
+                            make shortName, visible on trans when { true }
+                            make fullName, visible on trans when { true }
+
+                            if(isDphPayer(typ.value)) {
+                                make icDph, visible on trans when { true }
+                            } else {
+                                make icDph, hidden on trans when { true }
+                            }
+
+                            make firstName, hidden on trans when { true }
+                            make surname, hidden on trans when { true }
+                        } else {
+                            make firstName, visible on trans when { true }
+                            make surname, visible on trans when { true }
+
+                            make ico, hidden on trans when { true }
+                            make dic, hidden on trans when { true }
+                            make icDph, hidden on trans when { true }
+                            make shortName, hidden on trans when { true }
+                            make fullName, hidden on trans when { true }
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>ico</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>dic</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>ic_dph</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organization_short_name</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organization_name</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <!--OBCAN-->
+            <dataRef>
+                <id>citizen_firstname</id>
+                <logic>
+                    <behavior>hidden</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>citizen_surname</id>
+                <logic>
+                    <behavior>hidden</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <dataGroup>
+            <id>address_grp</id>
+            <title>Sídlo</title>
+            <dataRef>
+                <id>street</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>street_number</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>city</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>postal_code</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <dataGroup>
+            <id>billing_info_grp</id>
+            <title>Fakturačné informácie</title>
+            <dataRef>
+                <id>select_code</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>billing_organization</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>invoice_incoming_due_days</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>invoice_outcoming_due_days</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>limit_after_payment_due</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>total_limit</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <dataGroup>
+            <id>organisation_contact_people</id>
+            <title>Kontaktné osoby</title>
+            <dataRef>
+                <id>contact_person_name_1</id>
+                <logic>
+                    <behavior>visible</behavior>
+                    <action trigger="get">
+                        dis: f.this,
+                        email: f.contact_person_email_1,
+
+                        ico: f.ico,
+                        typ: f.organization_type,
+
+                        trans: t.6662;
+
+                        if(hasIco(typ.value)) {
+                            def dataMap = getContactDataMapForContactOnIndex(ico.value, 1)
+
+                            if(dataMap == null) {
+                                make dis, hidden on trans when { true }
+                                make email, hidden on trans when { true }
+                            } else {
+                                change dis value { dataMap.get("name") }
+                                make dis, visible on trans when { true }
+
+                                change email value { dataMap.get("email") }
+                                make email, visible on trans when { true }
+                            }
+
+                        } else {
+                            make dis, hidden on trans when { true }
+                            make email, hidden on trans when { true }
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>contact_person_email_1</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>contact_person_name_2</id>
+                <logic>
+                    <behavior>visible</behavior>
+                    <action trigger="get">
+                        dis: f.this,
+                        email: f.contact_person_email_2,
+
+                        ico: f.ico,
+                        typ: f.organization_type,
+
+                        trans: t.6662;
+
+                        if(hasIco(typ.value)) {
+                            def dataMap = getContactDataMapForContactOnIndex(ico.value, 2)
+
+                            if(dataMap == null) {
+                                make dis, hidden on trans when { true }
+                                make email, hidden on trans when { true }
+                            } else {
+                                change dis value { dataMap.get("name") }
+                                make dis, visible on trans when { true }
+
+                            change email value { dataMap.get("email") }
+                            make email, visible on trans when { true }
+                            }
+
+                        } else {
+                            make dis, hidden on trans when { true }
+                            make email, hidden on trans when { true }
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>contact_person_email_2</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>contact_person_name_3</id>
+                <logic>
+                    <behavior>visible</behavior>
+                    <action trigger="get">
+                        dis: f.this,
+                        email: f.contact_person_email_3,
+
+                        ico: f.ico,
+                        typ: f.organization_type,
+
+                        trans: t.6662;
+
+                        if(hasIco(typ.value)) {
+                            def dataMap = getContactDataMapForContactOnIndex(ico.value, 3)
+
+                            if(dataMap == null) {
+                                make dis, hidden on trans when { true }
+                                make email, hidden on trans when { true }
+                            } else {
+                                change dis value { dataMap.get("name") }
+                                make dis, visible on trans when { true }
+
+                                change email value { dataMap.get("email") }
+                                make email, visible on trans when { true }
+                            }
+
+                        } else {
+                                make dis, hidden on trans when { true }
+                                make email, hidden on trans when { true }
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>contact_person_email_3</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <dataGroup>
+            <id>organisation_accounts_grp</id>
+            <title>Bankové účty organizácie</title>
+            <dataRef>
+                <id>organisation_account_number_1</id>
+                <logic>
+                    <behavior>visible</behavior>
+                    <action trigger="get">
+                        dis: f.this,
+                        bank: f.organisation_account_bank_1,
+
+                        ico: f.ico,
+                        typ: f.organization_type,
+
+                        trans: t.6662;
+
+                        if(hasIco(typ.value)) {
+                            def dataMap = getAccountByOrganisationIcoOnIndex(ico.value, 1)
+
+                            if(dataMap == null) {
+                                make dis, hidden on trans when { true }
+                                make bank, hidden on trans when { true }
+                            } else {
+                                change dis value { dataMap.get("accountNumber") }
+                                make dis, visible on trans when { true }
+
+                                change bank value { dataMap.get("bank") }
+                                make bank, visible on trans when { true }
+                            }
+
+                        } else {
+                            make dis, hidden on trans when { true }
+                            make bank, hidden on trans when { true }
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organisation_account_bank_1</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organisation_account_number_2</id>
+                <logic>
+                    <behavior>visible</behavior>
+                    <action trigger="get">
+                        dis: f.this,
+                        bank: f.organisation_account_bank_2,
+
+                        ico: f.ico,
+                        typ: f.organization_type,
+
+                        trans: t.6662;
+
+                        if(hasIco(typ.value)) {
+                            def dataMap = getAccountByOrganisationIcoOnIndex(ico.value, 2)
+
+                            if(dataMap == null) {
+
+                                make dis, hidden on trans when { true }
+                                make bank, hidden on trans when { true }
+                            } else {
+                                change dis value { dataMap.get("accountNumber") }
+                                make dis, visible on trans when { true }
+
+                                change bank value { dataMap.get("bank") }
+                                make bank, visible on trans when { true }
+                            }
+
+                        } else {
+                                make dis, hidden on trans when { true }
+                                make bank, hidden on trans when { true }
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organisation_account_bank_2</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organisation_account_number_3</id>
+                <logic>
+                    <behavior>visible</behavior>
+                    <action trigger="get">
+                        dis: f.this,
+                        bank: f.organisation_account_bank_3,
+
+                        ico: f.ico,
+                        typ: f.organization_type,
+
+                        trans: t.6662;
+
+                        if(hasIco(typ.value)) {
+                            def dataMap = getAccountByOrganisationIcoOnIndex(ico.value, 3)
+
+                            if(dataMap == null) {
+                                make dis, hidden on trans when { true }
+                                make bank, hidden on trans when { true }
+                            } else {
+                                change dis value { dataMap.get("accountNumber") }
+                                make dis, visible on trans when { true }
+
+                                change bank value { dataMap.get("bank") }
+                                make bank, visible on trans when { true }
+                            }
+
+                        } else {
+                            make dis, hidden on trans when { true }
+                            make bank, hidden on trans when { true }
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organisation_account_bank_3</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+    </transition>
+    <transition>
+        <id>6663</id>
+        <x>340</x>
+        <y>380</y>
+        <label>Deaktivovať organizáciu</label>
+        <roleRef>
+            <id>admin</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <event type="finish">
+            <id>deactivate_org</id>
+            <actions phase="post">
+                <action>
+                    isActive: f.is_active;
+                    change isActive value { false }
+                </action>
+            </actions>
+        </event>
+    </transition>
+    <transition>
+        <id>6664</id>
+        <x>580</x>
+        <y>380</y>
+        <label>Obnoviť organizáciu</label>
+        <roleRef>
+            <id>admin</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <event type="finish">
+            <id>activate_org</id>
+            <actions phase="post">
+                <action>
+                    isActive: f.is_active;
+
+                    change isActive value { true }
+                </action>
+            </actions>
+        </event>
+    </transition>
+    <transition>
+        <id>6665</id>
+        <x>660</x>
+        <y>260</y>
+        <label>Zmeniť informácie</label>
+        <roleRef>
+            <id>admin</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>manager</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <dataGroup>
+            <id>organization_main_info_grp</id>
+            <title>Základné informácie</title>
+            <dataRef>
+                <id>organization_type</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                    <action trigger="get">
+                        typ: f.this,
+                        trans: t.6665,
+
+                        ico: f.ico,
+                        dic: f.dic,
+                        icDph: f.ic_dph,
+                        shortName: f.organization_short_name,
+                        fullName: f.organization_name,
+
+                        firstName: f.citizen_firstname,
+                        surname: f.citizen_surname;
+
+                        if(hasIco(typ.value)) {
+                            make ico, editable on trans when { true }
+                            make ico, required on trans when { true }
+
+                            make dic, editable on trans when { true }
+                            make dic, required on trans when { true }
+
+                            make shortName, editable on trans when { true }
+                            make shortName, required on trans when { true }
+
+                            make fullName, editable on trans when { true }
+                            make fullName, required on trans when { true }
+
+                            if(isDphPayer(typ.value)) {
+                                make icDph, editable on trans when { true }
+                                make icDph, required on trans when { true }
+                            } else {
+                                make icDph, hidden on trans when { true }
+                                change icDph value { null }
+                            }
+
+                            make firstName, hidden on trans when { true }
+                            make surname, hidden on trans when { true }
+                        } else {
+                            make firstName, editable on trans when { true }
+                            make firstName, required on trans when { true }
+
+                            make surname, editable on trans when { true }
+                            make surname, required on trans when { true }
+
+                            make ico, hidden on trans when { true }
+                            make dic, hidden on trans when { true }
+                            make icDph, hidden on trans when { true }
+                            make shortName, hidden on trans when { true }
+                            make fullName, hidden on trans when { true }
+                        }
+                    </action>
+                    <action trigger="set">
+                        typ: f.this,
+                        trans: t.6665,
+
+                        ico: f.ico,
+                        dic: f.dic,
+                        icDph: f.ic_dph,
+                        shortName: f.organization_short_name,
+                        fullName: f.organization_name,
+
+                        firstName: f.citizen_firstname,
+                        surname: f.citizen_surname;
+
+                        if(hasIco(typ.value)) {
+                            make ico, editable on trans when { true }
+                            make ico, required on trans when { true }
+
+                            make dic, editable on trans when { true }
+                            make dic, required on trans when { true }
+
+                            make shortName, editable on trans when { true }
+                            make shortName, required on trans when { true }
+
+                            make fullName, editable on trans when { true }
+                            make fullName, required on trans when { true }
+
+                            if(isDphPayer(typ.value)) {
+                                make icDph, editable on trans when { true }
+                                make icDph, required on trans when { true }
+                            } else {
+                                make icDph, hidden on trans when { true }
+                                change icDph value { null }
+                            }
+
+                            make firstName, hidden on trans when { true }
+                            make surname, hidden on trans when { true }
+
+                            change firstName value { null }
+                            change surname value { null }
+                        } else {
+                            make firstName, editable on trans when { true }
+                            make firstName, required on trans when { true }
+
+                            make surname, editable on trans when { true }
+                            make surname, required on trans when { true }
+
+                            make ico, hidden on trans when { true }
+                            make dic, hidden on trans when { true }
+                            make icDph, hidden on trans when { true }
+                            make shortName, hidden on trans when { true }
+                            make fullName, hidden on trans when { true }
+
+                            change ico value { null }
+                            change dic value { null }
+                            change icDph value { null }
+                            change shortName value { null }
+                            change fullName value { null }
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>ico</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>dic</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>ic_dph</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organization_short_name</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>organization_name</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <!--OBCAN-->
+            <dataRef>
+                <id>citizen_firstname</id>
+                <logic>
+                    <behavior>hidden</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>citizen_surname</id>
+                <logic>
+                    <behavior>hidden</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <dataGroup>
+            <id>address_grp</id>
+            <title>Sídlo</title>
+            <dataRef>
+                <id>street</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>street_number</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>city</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>postal_code</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <dataGroup>
+            <id>billing_info_grp</id>
+            <title>Fakturačné informácie</title>
+            <dataRef>
+                <id>select_code</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>billing_organization</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>invoice_incoming_due_days</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>invoice_outcoming_due_days</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>limit_after_payment_due</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>total_limit</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+    </transition>
+    <transition>
+        <id>6675</id>
+        <x>605</x>
+        <y>94</y>
+        <label>Pridať kontaktnú osobu</label>
+        <assignPolicy>auto</assignPolicy>
+
+        <roleRef>
+            <id>admin</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>manager</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <dataGroup>
+            <id>contact_select</id>
+            <dataRef>
+                <id>contact_case</id>
+                <logic>
+                    <behavior>editable</behavior>
+
+                    <action trigger="get">
+                        ico: f.ico,
+                        contact_case_enum: f.contact_case,
+                        contact_case_ids: f.contact_case_ids;
+
+                        def contactOptions = getContactEnumerationsNotInOrganisation(ico.value as String)
+
+                        change contact_case_enum choices {
+                            return ["Nový kontakt"] + contactOptions["enum_values"]
+                        }
+
+                        change contact_case_ids choices {
+                            return ["none"] + contactOptions["enum_keys"]
+                        }
+                    </action>
+
+                    <action trigger="set">
+                        contact_case_enum: f.contact_case,
+                        contact_case_ids: f.contact_case_ids,
+                        selected_contact_case_string_id: f.selected_contact_case_string_id;
+
+                        change selected_contact_case_string_id value {
+                            return getCorrespondingEnumValue(contact_case_ids, contact_case_enum) as String
+                        }
+
+                    </action>
+
+                    <action trigger="set">
+                        contact_case_enum: f.contact_case,
+                        title: f.title,
+                        trans: t.6675;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        make title, editable on trans when { isNewContact }
+                        make title, visible on trans when { !isNewContact }
+                    </action>
+                    <action trigger="set">
+                        contact_case_enum: f.contact_case,
+                        trans: t.6675,
+                        contact_name: f.contact_name;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        make contact_name, required on trans when { isNewContact }
+                        make contact_name, editable on trans when { isNewContact }
+                        make contact_name, visible on trans when { !isNewContact }
+                    </action>
+                    <action trigger="set">
+                        contact_case_enum: f.contact_case,
+                        trans: t.6675,
+                        contact_surname: f.contact_surname;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        make contact_surname, required on trans when { isNewContact }
+                        make contact_surname, editable on trans when { isNewContact }
+                        make contact_surname, visible on trans when { !isNewContact }
+                    </action>
+                    <action trigger="set">
+                        contact_case_enum: f.contact_case,
+                        trans: t.6675,
+                        job_title: f.job_title;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        make job_title, editable on trans when { isNewContact }
+                        make job_title, visible on trans when { !isNewContact }
+                    </action>
+                    <action trigger="set">
+                        contact_case_enum: f.contact_case,
+                        trans: t.6675,
+                        telephone: f.telephone;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        make telephone, editable on trans when { isNewContact }
+                        make telephone, visible on trans when { !isNewContact }
+                    </action>
+                    <action trigger="set">
+                        contact_case_enum: f.contact_case,
+                        trans: t.6675,
+                        mail: f.mail;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        make mail, editable on trans when { isNewContact }
+                        make mail, visible on trans when { !isNewContact }
+                    </action>
+
+                    <!-- get & set contact data -->
+                    <action trigger="set">
+                        selected_contact_case_string_id: f.selected_contact_case_string_id,
+                        contact_case_enum: f.contact_case,
+                        title: f.title,
+                        contact_name: f.contact_name,
+                        contact_surname: f.contact_surname,
+                        job_title: f.job_title,
+                        telephone: f.telephone,
+                        mail: f.mail;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        if (!isNewContact) {
+                            def dataSet = getDataSetByCaseId(selected_contact_case_string_id.value)
+
+                            change title value { dataSet.get("title").value }
+                            change contact_name value { dataSet.get("contact_name").value }
+                            change contact_surname value { dataSet.get("contact_surname").value }
+                            change job_title value { dataSet.get("job_title").value }
+                            change telephone value { dataSet.get("telephone").value }
+                            change mail value { dataSet.get("mail").value }
+                        }
+                    </action>
+
+                    <action trigger="set">
+                        title: f.title,
+                        contact_case_enum: f.contact_case;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        change title value {
+                            if (isNewContact)
+                                return ""
+                            return title.value
+                        }
+                    </action>
+                    <action trigger="set">
+                        contact_name: f.contact_name,
+                        contact_case_enum: f.contact_case;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        change contact_name value {
+                            if (isNewContact)
+                                return ""
+                            return contact_name.value
+                        }
+                    </action>
+                    <action trigger="set">
+                        contact_surname: f.contact_surname,
+                        contact_case_enum: f.contact_case;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        change contact_surname value {
+                            if (isNewContact)
+                                return ""
+                            return contact_surname.value
+                        }
+                    </action>
+                    <action trigger="set">
+                        job_title: f.job_title,
+                        contact_case_enum: f.contact_case;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        change job_title value {
+                            if (isNewContact)
+                                return ""
+                            return job_title.value
+                        }
+                    </action>
+                    <action trigger="set">
+                        telephone: f.telephone,
+                        contact_case_enum: f.contact_case;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        change telephone value {
+                            if (isNewContact)
+                                return ""
+                            return telephone.value
+                        }
+                    </action>
+                    <action trigger="set">
+                        mail: f.mail,
+                        contact_case_enum: f.contact_case;
+
+                        boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+
+                        change mail value {
+                            if (isNewContact)
+                                return ""
+                            return mail.value
+                        }
+                    </action>
+
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>contact_data</id>
+            <dataRef>
+                <id>title</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>contact_name</id>
+                <logic>
+                    <behavior>visible</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>contact_surname</id>
+                <logic>
+                    <behavior>visible</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>job_title</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>telephone</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>mail</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <event type="finish">
+            <id>1</id>
+            <actions phase="pre">
+
+                <action>
+                    contact_case_id: f.selected_contact_case_string_id,
+                    contact_case_enum: f.contact_case,
+                    title: f.title,
+                    contact_name: f.contact_name,
+                    contact_surname: f.contact_surname,
+                    job_title: f.job_title,
+                    telephone: f.telephone,
+                    mail: f.mail,
+                    ico: f.ico;
+
+                    boolean isNewContact = (contact_case_enum.value == "Nový kontakt")
+                    if (isNewContact &amp;&amp; contact_case_id != null) {
+                        def contactData = [
+                            "org_ico": [
+                                "type": "text",
+                                "value": ico.value
+                            ],
+                            "title": [
+                                "type": "text",
+                                "value": title.value
+                            ],
+                            "contact_name": [
+                                "type": "text",
+                                "value": contact_name.value
+                            ],
+                            "contact_surname": [
+                                "type": "text",
+                                "value": contact_surname.value
+                            ],
+                            "job_title": [
+                                "type": "text",
+                                "value": job_title.value
+                            ],
+                            "telephone": [
+                                "type": "text",
+                                "value": telephone.value
+                            ],
+                            "mail": [
+                                "type": "text",
+                                "value": mail.value
+                            ]
+                        ] as Map
+                        createNewContactCase(contactData)
+                    } else {
+                        assignContactToOrganisation(ico.value, contact_case_id.value)
+                    }
+                </action>
+
+            </actions>
+        </event>
+
+    </transition>
+    <transition>
+        <id>6689</id>
+        <x>733</x>
+        <y>94</y>
+        <label>Pridať bankový účet</label>
+        <assignPolicy>auto</assignPolicy>
+        <roleRef>
+            <id>admin</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>manager</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+
+        <dataGroup>
+            <id>bank_select</id>
+            <title>Pridať bankový účet</title>
+            <dataRef>
+                <id>bank_case</id>
+                <logic>
+                    <behavior>editable</behavior>
+
+                    <action trigger="get">
+                        bank_case_enum: f.bank_case,
+                        bank_case_ids: f.bank_case_ids;
+
+                        def bankOptions = getBankEnumerations()
+
+                        change bank_case_enum choices {
+                            return bankOptions["enum_values"]
+                        }
+
+                        change bank_case_ids choices {
+                            return bankOptions["enum_keys"]
+                        }
+                    </action>
+
+                    <action trigger="set">
+                        bank_case_enum: f.bank_case,
+                        bank_case_ids: f.bank_case_ids,
+                        selected_bank_case_string_id: f.selected_bank_case_string_id;
+
+                        change selected_bank_case_string_id value {
+                            return getCorrespondingEnumValue(bank_case_ids, bank_case_enum) as String
+                        }
+                    </action>
+
+                    <!-- get & set contact data -->
+                    <action trigger="set">
+                        selected_bank_case_string_id: f.selected_bank_case_string_id,
+                        bank_case_enum: f.bank_case,
+                        bank_name: f.bank_name,
+                        bank_code: f.bank_code,
+                        swift_code: f.swift_code;
+
+                        boolean isNewContact = (bank_case_enum.value == "Nový kontakt")
+
+                        def dataSet = getDataSetByCaseId(selected_bank_case_string_id.value)
+
+                        change bank_name value { dataSet.get("bank_name").value }
+                        change bank_code value { dataSet.get("bank_code").value }
+                        change swift_code value { dataSet.get("swift_code").value }
+                    </action>
+
+                    <action trigger="set">
+                        bank_name: f.bank_name;
+
+                        change bank_name value {
+                            return bank_name.value
+                        }
+                    </action>
+                    <action trigger="set">
+                        bank_code: f.bank_code;
+
+                        change bank_code value {
+                            return bank_code.value
+                        }
+                    </action>
+                    <action trigger="set">
+                        swift_code: f.swift_code;
+
+                        change swift_code value {
+                            return swift_code.value
+                        }
+                    </action>
+
+                    <action trigger="set">
+                        account_number: f.account_number;
+
+                        change account_number value {
+                            return ""
+                        }
+                    </action>
+
+                    <action trigger="set">
+                        selected_bank_case_string_id: f.selected_bank_case_string_id,
+                        account_case_enum: f.account_case,
+                        account_case_ids: f.account_case_ids;
+
+                        def bankCode = getDataSetByCaseId(selected_bank_case_string_id.value).get("bank_code").value
+
+                        def accountOptions = getAccountEnumerations(bankCode as String)
+
+                        change account_case_ids choices {
+                            return accountOptions["enum_keys"]
+                        }
+
+                        change account_case_enum choices {
+                            return accountOptions["enum_values"]
+                        }
+                    </action>
+                </logic>
+            </dataRef>
+
+            <dataRef>
+                <id>account_case</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+
+                    <action trigger="set">
+                        account_case_enum: f.account_case,
+                        account_case_ids: f.account_case_ids,
+                        selected_account_case_string_id: f.selected_account_case_string_id;
+
+                        change selected_account_case_string_id value {
+                            return getCorrespondingEnumValue(account_case_ids, account_case_enum) as String
+                        }
+                    </action>
+
+                    <!-- get & set contact data -->
+                    <action trigger="set">
+                        selected_account_case_string_id: f.selected_account_case_string_id,
+                        account_number: f.account_number;
+
+                        def dataSet = getDataSetByCaseId(selected_account_case_string_id.value)
+
+                        change account_number value { dataSet.get("account_number").value }
+                    </action>
+
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>bank_data_grp</id>
+            <dataRef>
+                <id>bank_name</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>bank_code</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>swift_code</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <dataGroup>
+            <id>account_data_grp</id>
+            <dataRef>
+                <id>account_number</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <event type="finish">
+            <id>1</id>
+            <actions phase="pre">
+                <action>
+                    org_ico: f.ico,
+                    selected_account_case_string_id: f.selected_account_case_string_id;
+
+                    assignAccountToOrganisation(org_ico.value as String, selected_account_case_string_id.value as String)
+                </action>
+            </actions>
+        </event>
+    </transition>
+
+    <!--TODO REMOVE-->
+    <transition>
+        <id>6704</id>
+        <x>298</x>
+        <y>96</y>
+        <label>Get data</label>
+    </transition>
+    <!-- PLACES -->
+    <place>
+        <id>1</id>
+        <x>460</x>
+        <y>260</y>
+        <label>active</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>2</id>
+        <x>140</x>
+        <y>260</y>
+        <label>IN</label>
+        <tokens>1</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>9</id>
+        <x>460</x>
+        <y>500</y>
+        <label>inactive</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>6703</id>
+        <x>299</x>
+        <y>176</y>
+        <label>get data place</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <!-- ARCS -->
+    <arc>
+        <id>4</id>
+        <type>regular</type>
+        <sourceId>2</sourceId>
+        <destinationId>6661</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>5</id>
+        <type>regular</type>
+        <sourceId>6661</sourceId>
+        <destinationId>1</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>8</id>
+        <type>regular</type>
+        <sourceId>1</sourceId>
+        <destinationId>6663</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>11</id>
+        <type>regular</type>
+        <sourceId>6663</sourceId>
+        <destinationId>9</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>12</id>
+        <type>regular</type>
+        <sourceId>9</sourceId>
+        <destinationId>6664</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>13</id>
+        <type>regular</type>
+        <sourceId>6664</sourceId>
+        <destinationId>1</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>14</id>
+        <type>read</type>
+        <sourceId>1</sourceId>
+        <destinationId>6662</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>16</id>
+        <type>regular</type>
+        <sourceId>1</sourceId>
+        <destinationId>6665</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>17</id>
+        <type>regular</type>
+        <sourceId>6665</sourceId>
+        <destinationId>1</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>6687</id>
+        <type>regular</type>
+        <sourceId>1</sourceId>
+        <destinationId>6675</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>6688</id>
+        <type>regular</type>
+        <sourceId>6675</sourceId>
+        <destinationId>1</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>6690</id>
+        <type>regular</type>
+        <sourceId>1</sourceId>
+        <destinationId>6689</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>6691</id>
+        <type>regular</type>
+        <sourceId>6689</sourceId>
+        <destinationId>1</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>6705</id>
+        <type>read</type>
+        <sourceId>6703</sourceId>
+        <destinationId>6704</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>6706</id>
+        <type>regular</type>
+        <sourceId>6661</sourceId>
+        <destinationId>6703</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+</document>
