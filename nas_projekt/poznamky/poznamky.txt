@@ -1,0 +1,7 @@
+-ako escape-nut specialny charakter v xml (chceme napisat < ako text, skusame &lt;)
+
+-pridanie mesta by sme mohli riesit ako enumerat na vyber (Bratislava a vychod :D )
+
+-phone number regex na cisla
+
+-nevidime soferov aky su v systeme (z pohladu zakaznika)
