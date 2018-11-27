@@ -1,7 +1,11 @@
--ako escape-nut specialny charakter v xml (chceme napisat < ako text, skusame &lt;)
-
 -pridanie mesta by sme mohli riesit ako enumerat na vyber (Bratislava a vychod :D )
 
 -phone number regex na cisla
 
 -nevidime soferov aky su v systeme (z pohladu zakaznika)
+
+
+--hladame soferov cez task lebo ak este nie je vytvoreny profil sofera (finish)
+--pri vybere sofera zobrazit nejake info sofera cez enumeraciu 
+
+enumeracia nieco: v jednej su mena taxikarov v druhej idecka (treba mat 2 iteracie, ked som si vybral toto meno tak je to toto id)
