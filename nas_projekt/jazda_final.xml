@@ -41,12 +41,6 @@
         <perform>true</perform>
       </logic>
     </roleRef>
-	<event type="finish">
-		<id>sofer_is_there_start</id>
-		<actions phase="post">
-			<action> sofer_is_there_start: sofer_is_there_start; change sofer_is_there_start value { true } </action>
-		</actions>
-	</event>
 	</transition>
 	<transition>
 		<id>21</id>
@@ -71,30 +65,12 @@
         <perform>true</perform>
       </logic>
     </roleRef>
-	<event type="finish">
-		<id>sofer_is_there_finish</id>
-		<actions phase="post">
-			<action> sofer_is_there_finish: sofer_is_there_finish; change sofer_is_there_finish value { true } </action>
-		</actions>
-	</event>
 	</transition>
 	<transition>
 		<id>39</id>
 		<x>900</x>
 		<y>100</y>
 		<label>stiahnutie penazi [system]</label>
-    <roleRef>
-      <id>system</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
-		<event type="finish">
-			<id>sofer_is_there_start</id>
-			<actions phase="post">
-				<action> sofer_is_there_start: sofer_is_there_start; change sofer_is_there_start value { true } </action>
-			</actions>
-		</event>
 	</transition>
 	<transition>
 		<id>53</id>

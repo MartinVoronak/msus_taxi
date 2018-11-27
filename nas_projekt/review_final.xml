@@ -14,10 +14,7 @@
     <name>System</name>
   </role>
 	<!-- DATA -->
-	<!--<data type="text">-->
-		<!--<id>poznamka</id>-->
-		<!--<title>Pridat poznamku</title>-->
-	<!--</data>-->
+
   <!-- TRANSITIONS -->
 	<transition>
 		<id>3</id>
