@@ -13,6 +13,11 @@
     <id>system</id>
     <name>System</name>
   </role>
+	<!-- DATA -->
+	<!--<data type="text">-->
+		<!--<id>poznamka</id>-->
+		<!--<title>Pridat poznamku</title>-->
+	<!--</data>-->
   <!-- TRANSITIONS -->
 	<transition>
 		<id>3</id>
@@ -49,6 +54,16 @@
         <perform>true</perform>
       </logic>
     </roleRef>
+		<dataGroup>
+			<id>review_grp</id>
+			<dataRef>
+				<id>poznamka</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
 	</transition>
 	<transition>
 		<id>14</id>

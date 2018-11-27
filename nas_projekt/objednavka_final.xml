@@ -13,6 +13,19 @@
     <id>system</id>
     <name>System</name>
   </role>
+	<!-- DATA -->
+	<data type="text">
+		<id>zakaznik_address_from</id>
+		<title>Address from</title>
+	</data>
+	<data  type="text">
+		<id>zakaznik_address_to</id>
+		<title>Address to</title>
+	</data>
+	<data  type="time">
+		<id>zakaznik_time</id>
+		<title>Time</title>
+	</data>
   <!-- TRANSITIONS -->
 	<transition>
 		<id>2</id>
@@ -37,6 +50,30 @@
         <perform>true</perform>
       </logic>
     </roleRef>
+		<dataGroup>
+			<id>objadnavka_grp</id>
+			<dataRef>
+				<id>zakaznik_address_from</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>zakaznik_address_to</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>zakaznik_time</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
 	</transition>
 	<transition>
 		<id>15</id>

@@ -13,6 +13,23 @@
     <id>system</id>
     <name>System</name>
   </role>
+	<!-- DATA -->
+	<data  type="number">
+		<id>zakaznik_cash</id>
+		<title>Cash</title>
+	</data>
+	<data  type="number">
+		<id>zakaznik_card</id>
+		<title>Card number</title>
+	</data>
+	<data  type="date">
+		<id>zakaznik_card_expire</id>
+		<title>Card expiration</title>
+	</data>
+	<data  type="number">
+		<id>zakaznik_card_special</id>
+		<title>Card special code</title>
+	</data>
   <!-- TRANSITIONS -->
 	<transition>
 		<id>2</id>
@@ -61,6 +78,37 @@
         <perform>true</perform>
       </logic>
     </roleRef>
+		<dataGroup>
+			<id>zakaznik_grp</id>
+			<dataRef>
+				<id>zakaznik_card</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>zakaznik_card_expire</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>zakaznik_card_special</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>zakaznik_cash</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
 	</transition>
 	<transition>
 		<id>15</id>
