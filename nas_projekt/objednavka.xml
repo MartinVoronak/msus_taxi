@@ -1,203 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
-  <!-- ROLES -->
-  <role>
-    <id>zakaznik</id>
-    <name>Zakaznik</name>
-  </role>
-  <role>
-    <id>sofer</id>
-    <name>Sofer</name>
-  </role>
-  <role>
-    <id>system</id>
-    <name>System</name>
-  </role>
-	<!-- DATA -->
-	<data type="text">
-		<id>zakaznik_address_from</id>
-		<title>Address from</title>
-	</data>
-	<data  type="text">
-		<id>zakaznik_address_to</id>
-		<title>Address to</title>
-	</data>
-	<data  type="time">
-		<id>zakaznik_time</id>
-		<title>Time</title>
-	</data>
-  <!-- TRANSITIONS -->
-	<transition>
-		<id>2</id>
-		<x>300</x>
-		<y>220</y>
-		<label>objednat taxi [zakaznik]</label>
-    <roleRef>
-      <id>zakaznik</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
-	</transition>
+	<!-- TRANSITIONS -->
 	<transition>
 		<id>7</id>
 		<x>580</x>
 		<y>220</y>
 		<label>vyplnenie udajov [zakaznik]</label>
-    <roleRef>
-      <id>zakaznik</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
-		<dataGroup>
-			<id>objadnavka_grp</id>
-			<dataRef>
-				<id>zakaznik_address_from</id>
-				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
-				</logic>
-			</dataRef>
-			<dataRef>
-				<id>zakaznik_address_to</id>
-				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
-				</logic>
-			</dataRef>
-			<dataRef>
-				<id>zakaznik_time</id>
-				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
-				</logic>
-			</dataRef>
-		</dataGroup>
 	</transition>
 	<transition>
 		<id>15</id>
 		<x>900</x>
 		<y>220</y>
 		<label>najdenie sofera [system]</label>
-    <roleRef>
-      <id>system</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
-	</transition>
-	<transition>
-		<id>23</id>
-		<x>300</x>
-		<y>340</y>
-		<label>navrat [zakaznik]</label>
-    <roleRef>
-      <id>zakaznik</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
 	</transition>
 	<transition>
 		<id>34</id>
 		<x>740</x>
 		<y>100</y>
 		<label>kontrola stavu uctu [system]</label>
-    <roleRef>
-      <id>system</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
 	</transition>
 	<transition>
 		<id>49</id>
 		<x>1060</x>
 		<y>60</y>
 		<label>vyber sofera [zakaznik]</label>
-    <roleRef>
-      <id>zakaznik</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
 	</transition>
 	<transition>
 		<id>71</id>
 		<x>1060</x>
 		<y>380</y>
 		<label>nechcem sofera [zakaznik]</label>
-    <roleRef>
-      <id>zakaznik</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
 	</transition>
 	<transition>
 		<id>80</id>
 		<x>740</x>
 		<y>380</y>
 		<label>uprav parametre [system]</label>
-    <roleRef>
-      <id>system</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
 	</transition>
 	<transition>
 		<id>87</id>
 		<x>1340</x>
 		<y>380</y>
 		<label>vytvorenie jazdy [system]</label>
-    <roleRef>
-      <id>system</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
 	</transition>
 	<transition>
 		<id>89</id>
 		<x>1340</x>
 		<y>60</y>
 		<label>potvrdit [sofer]</label>
-    <roleRef>
-      <id>sofer</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
 	</transition>
 	<transition>
 		<id>91</id>
 		<x>1220</x>
 		<y>220</y>
 		<label>zamietnut [sofer]</label>
-    <roleRef>
-      <id>sofer</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
 	</transition>
 	<!-- PLACES -->
-	<place>
-		<id>1</id>
-		<x>180</x>
-		<y>220</y>
-		<label>logged in</label>
-		<tokens>0</tokens>
-		<static>false</static>
-	</place>
 	<place>
 		<id>6</id>
 		<x>420</x>
 		<y>220</y>
 		<label>formular</label>
-		<tokens>0</tokens>
+		<tokens>1</tokens>
 		<static>false</static>
 	</place>
 	<place>
@@ -250,20 +114,6 @@
 	</place>
 	<!-- ARCS -->
 	<arc>
-		<id>3</id>
-		<type>regular</type>
-		<sourceId>1</sourceId>
-		<destinationId>2</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>8</id>
-		<type>regular</type>
-		<sourceId>2</sourceId>
-		<destinationId>6</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
 		<id>9</id>
 		<type>regular</type>
 		<sourceId>6</sourceId>
@@ -282,20 +132,6 @@
 		<type>regular</type>
 		<sourceId>15</sourceId>
 		<destinationId>19</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>24</id>
-		<type>regular</type>
-		<sourceId>6</sourceId>
-		<destinationId>23</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>25</id>
-		<type>regular</type>
-		<sourceId>23</sourceId>
-		<destinationId>1</destinationId>
 		<multiplicity>1</multiplicity>
 	</arc>
 	<arc>

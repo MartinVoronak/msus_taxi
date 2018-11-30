@@ -189,6 +189,16 @@
 		<x>380</x>
 		<y>60</y>
 		<label>vytvorit objednavku [zakaznik]</label>
+		<event type="finish">
+			<id>finish434</id>
+			<actions phase="post">
+				<action>
+					name: f.zakaznik_name;
+					full_name = "obj_"+ name.value;
+                    createCase("Team4--obj", full_name, "green")
+                </action>
+			</actions>
+		</event>
 	</transition>
 	<!-- PLACES -->
 	<place>
@@ -303,7 +313,7 @@
 	</arc>
 	<arc>
 		<id>435</id>
-		<type>regular</type>
+		<type>read</type>
 		<sourceId>1</sourceId>
 		<destinationId>434</destinationId>
 		<multiplicity>1</multiplicity>

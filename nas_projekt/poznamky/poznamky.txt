@@ -9,3 +9,9 @@
 --pri vybere sofera zobrazit nejake info sofera cez enumeraciu 
 
 enumeracia nieco: v jednej su mena taxikarov v druhej idecka (treba mat 2 iteracie, ked som si vybral toto meno tak je to toto id)
+
+
+
+
+robime to ze vytvarame objednavku title pomocou zakaznikoveho mena
+musime mergnut jazdu s objednakou kvoli jednoduchsiemu spracovaniu odpoctu kreditu zakaznika
