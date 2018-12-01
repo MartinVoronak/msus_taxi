@@ -27,7 +27,7 @@
 		<init>0</init>
 	</data>
 	<data type="number">
-		<id>zakaznik_cash</id>
+		<id>zakaznik_add_credit</id>
 		<title>Cash</title>
 	</data>
 	<data type="text">
@@ -51,6 +51,11 @@
 		<id>42</id>
 		<title>neplatne</title>
 		<init>1</init>
+	</data>
+	<data type="text">
+		<id>id_objednavka</id>
+		<title>nova objednavka</title>
+		<init>11</init>
 	</data>
 	<!-- TRANSITIONS -->
 	<transition>
@@ -124,7 +129,7 @@
 				</logic>
 			</dataRef>
 			<dataRef>
-				<id>zakaznik_cash</id>
+				<id>zakaznik_add_credit</id>
 				<logic>
 					<behavior>editable</behavior>
 					<behavior>required</behavior>
@@ -144,7 +149,7 @@
 				<action>
                     platne: f.41,
                     neplatne: f.42,
-                    cashVal: f.zakaznik_cash,
+                    cashVal: f.zakaznik_add_credit,
                     credit: f.zakaznik_credit,
                     card_number: f.zakaznik_card;
 
@@ -193,10 +198,31 @@
 			<id>finish434</id>
 			<actions phase="post">
 				<action>
-					name: f.zakaznik_name;
+					name: f.zakaznik_name,
+					id_obj: f.id_objednavka;
 					full_name = "obj_"+ name.value;
-                    createCase("Team4--obj", full_name, "green")
+
+					def objednavkaCase =  createCase("Team4--obj", full_name);
+
+					change id_obj value {
+						return objednavkaCase.getStringId();
+					}
                 </action>
+				<action>
+					name: f.zakaznik_name,
+					id_obj: f.id_objednavka;
+
+					def taskUdalost = findTask({it.title.defaultValue.eq("vyplnenie udajov [zakaznik]").and(it.caseId.eq(id_obj.value))});
+
+
+					setData(taskUdalost, [
+						"zakaznik_meno": [
+							"value": name.value,
+							"type" : "text"
+						]
+					]);
+
+				</action>
 			</actions>
 		</event>
 	</transition>

@@ -1,16 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+	<!-- DATA -->
+	<data type="text">
+		<id>travel_from</id>
+		<title>From</title>
+	</data>
+	<data type="text">
+		<id>travel_to</id>
+		<title>To</title>
+	</data>
+	<data type="text">
+		<id>zakaznik_meno</id>
+		<title>Meno</title>
+	</data>
+		<data type="text">
+		<id>zakaznik_stav_uctu</id>
+		<title>stav</title>
+	</data>
+	<data type="text">
+		<id>id_zakaznika</id>
+		<title>id_zak</title>
+	</data>
+	<data type="number">
+		<id>6666</id>
+		<title>isEnough</title>
+		<init>0</init>
+	</data>
+	<data type="number">
+		<id>6667</id>
+		<title>isNotEnough</title>
+		<init>1</init>
+	</data>
 	<!-- TRANSITIONS -->
 	<transition>
 		<id>7</id>
 		<x>580</x>
 		<y>220</y>
 		<label>vyplnenie udajov [zakaznik]</label>
+		<dataGroup>
+			<id>objednavka_info_grp</id>
+			<dataRef>
+				<id>travel_from</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>travel_to</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>zakaznik_meno</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+		<event type="finish">
+			<id>finish155</id>
+			<actions phase="post">
+				<action>
+                </action>
+			</actions>
+		</event>
 	</transition>
 	<transition>
 		<id>15</id>
 		<x>900</x>
-		<y>220</y>
+		<y>260</y>
 		<label>najdenie sofera [system]</label>
 	</transition>
 	<transition>
@@ -18,24 +80,61 @@
 		<x>740</x>
 		<y>100</y>
 		<label>kontrola stavu uctu [system]</label>
+		<event type="finish">
+			<id>finish434</id>
+			<actions phase="post">
+				<action>
+					name: f.zakaznik_meno,
+					is_enough: f.6666,
+					is_not_enough: f.6667,
+					stav: f.zakaznik_stav_uctu;
+
+					def usecase = findCase({ it.title.eq(name.value) })
+					def task = findTask({ it.title.defaultValue.eq("zobrazit stav uctu [zakaznik]").and(it.caseId.eq(usecase.getStringId()))});
+
+					def data = getData(task)
+
+
+
+                    if(data["zakaznik_credit"].value > 5) {
+                        change is_enough value {
+						return 1 ;
+					}
+                    }else{
+					  change name value {
+						return "malo" ;
+					}
+					}
+
+					<!--setData(task, [-->
+						<!--"zakaznik_credit": [-->
+							<!--"value": 1000,-->
+							<!--"type" : "number"-->
+						<!--]-->
+					<!--]);-->
+
+
+				</action>
+			</actions>
+		</event>
 	</transition>
 	<transition>
 		<id>49</id>
-		<x>1060</x>
+		<x>1100</x>
 		<y>60</y>
 		<label>vyber sofera [zakaznik]</label>
 	</transition>
 	<transition>
 		<id>71</id>
-		<x>1060</x>
-		<y>380</y>
+		<x>980</x>
+		<y>180</y>
 		<label>nechcem sofera [zakaznik]</label>
 	</transition>
 	<transition>
 		<id>80</id>
 		<x>740</x>
 		<y>380</y>
-		<label>uprav parametre [system]</label>
+		<label>skuste neskor [zakaznik]</label>
 	</transition>
 	<transition>
 		<id>87</id>
@@ -52,7 +151,7 @@
 	<transition>
 		<id>91</id>
 		<x>1220</x>
-		<y>220</y>
+		<y>260</y>
 		<label>zamietnut [sofer]</label>
 	</transition>
 	<!-- PLACES -->
@@ -74,8 +173,8 @@
 	</place>
 	<place>
 		<id>19</id>
-		<x>1060</x>
-		<y>220</y>
+		<x>1100</x>
+		<y>260</y>
 		<label>najdeny sofer</label>
 		<tokens>0</tokens>
 		<static>false</static>
@@ -100,7 +199,7 @@
 		<id>78</id>
 		<x>900</x>
 		<y>380</y>
-		<label>nevyhovujuci sofer</label>
+		<label>nenajdeny sofer</label>
 		<tokens>0</tokens>
 		<static>false</static>
 	</place>
@@ -136,17 +235,17 @@
 	</arc>
 	<arc>
 		<id>36</id>
-		<type>regular</type>
+		<type>variable</type>
 		<sourceId>34</sourceId>
 		<destinationId>6</destinationId>
-		<multiplicity>1</multiplicity>
+		<multiplicity>6667</multiplicity>
 	</arc>
 	<arc>
 		<id>48</id>
-		<type>regular</type>
+		<type>variable</type>
 		<sourceId>34</sourceId>
 		<destinationId>47</destinationId>
-		<multiplicity>1</multiplicity>
+		<multiplicity>6666</multiplicity>
 	</arc>
 	<arc>
 		<id>50</id>
@@ -191,24 +290,10 @@
 		<multiplicity>0</multiplicity>
 	</arc>
 	<arc>
-		<id>81</id>
-		<type>regular</type>
-		<sourceId>80</sourceId>
-		<destinationId>47</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
 		<id>82</id>
 		<type>regular</type>
 		<sourceId>78</sourceId>
 		<destinationId>80</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>85</id>
-		<type>regular</type>
-		<sourceId>71</sourceId>
-		<destinationId>78</destinationId>
 		<multiplicity>1</multiplicity>
 	</arc>
 	<arc>
@@ -244,6 +329,20 @@
 		<type>regular</type>
 		<sourceId>91</sourceId>
 		<destinationId>19</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>114</id>
+		<type>regular</type>
+		<sourceId>71</sourceId>
+		<destinationId>47</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>116</id>
+		<type>regular</type>
+		<sourceId>80</sourceId>
+		<destinationId>47</destinationId>
 		<multiplicity>1</multiplicity>
 	</arc>
 </document>
