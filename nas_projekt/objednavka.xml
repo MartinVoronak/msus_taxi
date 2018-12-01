@@ -31,6 +31,10 @@
 		<title>isNotEnough</title>
 		<init>1</init>
 	</data>
+		<data type="multichoice">
+		<id>drivers</id>
+		<title>Soferovia</title>
+	</data>
 	<!-- TRANSITIONS -->
 	<transition>
 		<id>7</id>
@@ -74,6 +78,24 @@
 		<x>900</x>
 		<y>260</y>
 		<label>najdenie sofera [system]</label>
+			<event type="finish">
+			<id>finish434</id>
+			<actions phase="post">
+				<action>
+					name: f.zakaznik_meno,
+					driversArray: f.drivers;
+
+					List cases = findCases( { it.title.eq("Sof") } );
+
+					for ( i in cases) {
+					change driversArray choices {
+                            return driversArray.choices + i.dataSet.get("driver_name").value;
+						}
+					}
+
+				</action>
+			</actions>
+		</event>
 	</transition>
 	<transition>
 		<id>34</id>
@@ -82,12 +104,13 @@
 		<label>kontrola stavu uctu [system]</label>
 		<event type="finish">
 			<id>finish434</id>
-			<actions phase="post">
+			<actions phase="pre">
 				<action>
 					name: f.zakaznik_meno,
-					is_enough: f.6666,
-					is_not_enough: f.6667,
+					isEnough: f.6666,
+					isNotEnough: f.6667,
 					stav: f.zakaznik_stav_uctu;
+
 
 					def usecase = findCase({ it.title.eq(name.value) })
 					def task = findTask({ it.title.defaultValue.eq("zobrazit stav uctu [zakaznik]").and(it.caseId.eq(usecase.getStringId()))});
@@ -95,17 +118,22 @@
 					def data = getData(task)
 
 
-
-                    if(data["zakaznik_credit"].value > 5) {
-                        change is_enough value {
-						return 1 ;
+					if(data["zakaznik_credit"].value > 5) {
+					change isEnough value {
+					return 1 ;
 					}
-                    }else{
-					  change name value {
-						return "malo" ;
-					}
+					change isNotEnough value {
+					return 0 ;
 					}
 
+					}else{
+					change isEnough value {
+					return 0 ;
+					}
+					change isNotEnough value {
+					return 1 ;
+					}
+					}
 					<!--setData(task, [-->
 						<!--"zakaznik_credit": [-->
 							<!--"value": 1000,-->
@@ -123,6 +151,23 @@
 		<x>1100</x>
 		<y>60</y>
 		<label>vyber sofera [zakaznik]</label>
+		<dataGroup>
+			<id>objednavka_vyber_sof_grp</id>
+			<dataRef>
+				<id>drivers</id>
+				<logic>
+					<behavior>visible</behavior>
+					<behavior>editable</behavior>
+				</logic>
+			</dataRef>
+				<dataRef>
+				<id>zakaznik_meno</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
 	</transition>
 	<transition>
 		<id>71</id>
