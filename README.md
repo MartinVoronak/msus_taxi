@@ -1,6 +1,5 @@
 # Modelovanie a simulácia udalostných systémov
 ###### Taxi služba
 
-Updates:
-- Dokoncene pomenovania prechodov
-- Pridane role v xml
+## TODO:
+objednavka: variable nam nefunguje ak mame malo / vela kreditu (kontrola system) 
