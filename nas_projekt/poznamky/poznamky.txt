@@ -1,21 +1,9 @@
--sofer moze editovat svoj profil -> fix visible, read hrana
-
--objednavk:
-    -a pozriet profil sofera -> zmenit na read hranu
-    -meno zakaznika musime odstranit
-    -pridat hodnotenie
-    -typ licencie ?
-    
- -v jazde prepisat prichod na miesto -> read hrana (behaviour na view)
- 
--do review pridat describtion
-
--review: skopirovat datagroup z vztvorit review
- 
- 
-
-
-*znizovanie kreditu o 5 
-*vytvarame objednavku title pomocou zakaznikoveho mena
-*vytvarame soferov pomocou mena :D
+*Fixne strhavame 5 €
+*Zakaznik meno = title
+*Sofer case musi byt "Sof"
+*meno sofera - sofMeno
 *okomentovat ze vieme zobrazit aktivnych soferov a iba tych kt. sme nevylucili
+*preratavame ratingy soferov, zobrazujeme priemer
+*ked sofer zvoli "zaciatok jazdy", zmizne z dostupnych soferov
+*kontrolujeme zostatok na ucte pred vytvorenim jazdy
+*pri dobiti kreditu kontrolujeme spravnost udajov, pouzity regex
