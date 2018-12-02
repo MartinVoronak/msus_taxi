@@ -3,19 +3,19 @@
 	<!-- DATA -->
 	<data type="text">
 		<id>travel_from</id>
-		<title>From</title>
+		<title>Zaciatok trasy</title>
 	</data>
 	<data type="text">
 		<id>travel_to</id>
-		<title>To</title>
+		<title>Ciel trasy</title>
 	</data>
 	<data type="text">
 		<id>zakaznik_meno</id>
-		<title>Meno</title>
+		<title>Meno zakaznika</title>
 	</data>
 		<data type="text">
 		<id>zakaznik_stav_uctu</id>
-		<title>stav</title>
+		<title>Stav uctu</title>
 	</data>
 	<data type="text">
 		<id>id_zakaznika</id>
@@ -23,7 +23,7 @@
 	</data>
 	<data type="text">
 		<id>choosen_driver</id>
-		<title>vybtany sofer</title>
+		<title>Zvoleny sofer</title>
 	</data>
 	<data type="number">
 		<id>6666</id>
@@ -37,7 +37,7 @@
 	</data>
 	<data type="enumeration">
 		<id>drivers</id>
-		<title>Soferovia</title>
+		<title>Dostupni soferi</title>
 	</data>
 	<data type="multichoice">
 		<id>declined_drivers</id>
@@ -53,7 +53,7 @@
 	</data>
 	<data type="text">
 		<id>drivars_car</id>
-		<title>Auto</title>
+		<title>Znacka vozidla</title>
 	</data>
 	<data type="text">
 		<id>id_jazda</id>
@@ -63,6 +63,10 @@
 	<data type="text">
 		<id>id_sofera</id>
 		<title>id sofera</title>
+	</data>
+	<data type="number">
+		<id>sofer_rating</id>
+		<title>Priemerne hodnotenie sofera &#11088;</title>
 	</data>
 	<!-- TRANSITIONS -->
 	<transition>
@@ -89,8 +93,7 @@
 			<dataRef>
 				<id>zakaznik_meno</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 		</dataGroup>
@@ -233,6 +236,7 @@
 				<action>
 					choosenDriver: f.choosen_driver,
 					car: f.drivars_car,
+					rating: f.sofer_rating,
 					idSofera: f.id_sofera,
 					driversArray: f.drivers;
 
@@ -265,9 +269,9 @@
 					change car value{
 							return data["driver_car"].value;
 					}
-					<!--change car value{-->
-							<!--return idSofera.value;-->
-					<!--}-->
+					change rating value{
+							return data["divers_rating"].value;
+					}
 				</action>
 			</actions>
 		</event>
@@ -357,22 +361,19 @@
 			<dataRef>
 				<id>choosen_driver</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 			<dataRef>
 				<id>drivars_car</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 			<dataRef>
-				<id>zakaznik_meno</id>
+				<id>sofer_rating</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 		</dataGroup>

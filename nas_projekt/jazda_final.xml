@@ -8,7 +8,7 @@
 	</data>
     <data type="text">
 		<id>zakaznik_name</id>
-		<title>vezies tochto chuja</title>
+		<title>Vyzdvihnete tohto zakaznika</title>
 	</data>
     <data type="text">
 		<id>id_review</id>
@@ -25,15 +25,13 @@
 			<dataRef>
 				<id>id_sofera</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>hidden</behavior>
 				</logic>
 			</dataRef>
             <dataRef>
 				<id>zakaznik_name</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 		</dataGroup>

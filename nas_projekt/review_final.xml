@@ -6,9 +6,13 @@
 		<id>id_sofera</id>
 		<title>id sofera</title>
 	</data>
+    <data type="text">
+		<id>description</id>
+		<title>Poznamka k hodnoteniu</title>
+	</data>
     <data type="enumeration">
 		<id>driver_rating</id>
-		<title>Hodnotenie</title>
+		<title>Ohonit sofera</title>
         <values>&#11088;</values>
         <values>&#11088;&#11088;</values>
         <values>&#11088;&#11088;&#11088;</values>
@@ -37,6 +41,13 @@
 			<id>review_formular_grp</id>
 			<dataRef>
 				<id>driver_rating</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+            <dataRef>
+				<id>description</id>
 				<logic>
 					<behavior>editable</behavior>
 					<behavior>required</behavior>
@@ -92,6 +103,21 @@
         <x>1100</x>
         <y>140</y>
         <label>pozriet review [sofer | zakaznik]</label>
+        <dataGroup>
+			<id>view_review_grp</id>
+			<dataRef>
+				<id>driver_rating</id>
+				<logic>
+					<behavior>visible</behavior>
+				</logic>
+			</dataRef>
+            <dataRef>
+				<id>description</id>
+				<logic>
+					<behavior>visible</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
     </transition>
     <!-- PLACES -->
     <place>

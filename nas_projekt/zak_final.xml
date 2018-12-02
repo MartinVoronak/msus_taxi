@@ -19,28 +19,28 @@
 	<!-- DATA -->
 	<data type="text">
 		<id>zakaznik_name</id>
-		<title>meno</title>
+		<title>Meno</title>
 	</data>
 	<data type="number">
 		<id>zakaznik_credit</id>
-		<title>credit</title>
+		<title>Zostatok na ucte</title>
 		<init>0</init>
 	</data>
 	<data type="number">
 		<id>zakaznik_add_credit</id>
-		<title>Cash</title>
+		<title>Dobit kredit</title>
 	</data>
 	<data type="text">
 		<id>zakaznik_card</id>
-		<title>Card number</title>
+		<title>Cislo karty</title>
 	</data>
 	<data type="date">
 		<id>zakaznik_card_expire</id>
-		<title>Card expiration</title>
+		<title>Expiracia karty</title>
 	</data>
 	<data type="number">
 		<id>zakaznik_card_special</id>
-		<title>Card special code</title>
+		<title>CVC</title>
 	</data>
 	<data type="number">
 		<id>41</id>
@@ -54,7 +54,7 @@
 	</data>
 	<data type="text">
 		<id>id_objednavka</id>
-		<title>nova objednavka</title>
+		<title>Nova objednavka</title>
 		<init>11</init>
 	</data>
 	<!-- TRANSITIONS -->

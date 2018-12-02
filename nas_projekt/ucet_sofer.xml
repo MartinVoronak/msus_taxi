@@ -16,19 +16,19 @@
 	<!-- DATA -->
 	<data type="text">
 		<id>driver_name</id>
-		<title>Name</title>
+		<title>Meno</title>
 	</data>
 	<data  type="text">
 		<id>driver_surname</id>
-		<title>Surname</title>
+		<title>Priezvisko</title>
 	</data>
 	<data  type="text">
 		<id>driver_car</id>
-		<title>Car</title>
+		<title>Znacka auta</title>
 	</data>
 	<data  type="text">
 		<id>driver_phonenumber</id>
-		<title>Phone number</title>
+		<title>Telefonne cislo</title>
 	</data>
 	<data  type="number">
 		<id>divers_rating</id>
@@ -57,7 +57,7 @@
 	</data>
 	<data type="enumeration">
 		<id>driver_experience</id>
-		<title>Najazdene</title>
+		<title>Najazdene km</title>
 		<values>&lt;50000</values>
 		<values>&lt;100000</values>
 		<values>&gt;100000</values>
@@ -65,7 +65,7 @@
 	</data>
 	<data type="enumeration">
 		<id>driver_licence</id>
-		<title>Licence</title>
+		<title>Typ licencie</title>
 		<values>A</values>
 		<values>B</values>
 		<values>C</values>
@@ -153,36 +153,31 @@
 			<dataRef>
 				<id>driver_name</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 			<dataRef>
 				<id>driver_surname</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 			<dataRef>
 				<id>driver_car</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 			<dataRef>
 				<id>driver_phonenumber</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 			<dataRef>
 				<id>divers_rating</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 			<dataRef>
@@ -206,15 +201,13 @@
 			<dataRef>
 				<id>driver_experience</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 			<dataRef>
 				<id>driver_licence</id>
 				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
+					<behavior>visible</behavior>
 				</logic>
 			</dataRef>
 		</dataGroup>
