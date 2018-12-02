@@ -122,14 +122,17 @@
 
 					for( decDriv in declinedDrivers.choices ){
 						tempDecD = "" + decDriv;
+
 						if(tempDriverCandidate.equals(tempDecD)){
 							isInDeclined = true;
 						}
 					}
 					if(isInDeclined == false){
-					change driversArray choices {
+						if(i.dataSet.get("sofer_is_active").value){
+							change driversArray choices {
                             return driversArray.choices + i.dataSet.get("driver_name").value;
 						}
+					}
 					}
 					}
 

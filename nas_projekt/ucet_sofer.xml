@@ -192,6 +192,12 @@
 				</logic>
 			</dataRef>
 			<dataRef>
+				<id>sofer_is_active</id>
+				<logic>
+					<behavior>hidden</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
 				<id>rating_sum</id>
 				<logic>
 					<behavior>hidden</behavior>
