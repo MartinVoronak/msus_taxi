@@ -174,12 +174,7 @@
 					return 1 ;
 					}
 					}
-					<!--setData(task, [-->
-						<!--"zakaznik_credit": [-->
-							<!--"value": 1000,-->
-							<!--"type" : "number"-->
-						<!--]-->
-					<!--]);-->
+
 
 
 				</action>
@@ -239,6 +234,9 @@
 					change car value{
 							return data["driver_car"].value;
 					}
+					<!--change car value{-->
+							<!--return idSofera.value;-->
+					<!--}-->
 				</action>
 			</actions>
 		</event>
@@ -270,14 +268,19 @@
                 </action>
 				<action>
 					idSofera: f.id_sofera,
+					menoZakaznika: f.zakaznik_meno,
 					idJazda: f.id_jazda;
 
-					def taskJazda = findTask({it.title.defaultValue.eq("prichod do destinacie [sofer]").and(it.caseId.eq(idJazda.value))});
+					def taskJazda = findTask({it.title.defaultValue.eq("prichod na miesto [sofer]").and(it.caseId.eq(idJazda.value))});
 
 
 					setData(taskJazda, [
 						"id_sofera": [
 							"value": idSofera.value,
+							"type" : "text"
+						],
+						"zakaznik_name": [
+							"value": menoZakaznika.value,
 							"type" : "text"
 						]
 					]);

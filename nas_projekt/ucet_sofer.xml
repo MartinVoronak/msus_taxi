@@ -30,9 +30,20 @@
 		<id>driver_phonenumber</id>
 		<title>Phone number</title>
 	</data>
-	<data  type="text">
-		<id>driver_city</id>
-		<title>City</title>
+	<data  type="number">
+		<id>divers_rating</id>
+		<title>Priemerne hodnotenie &#11088;</title>
+		<init>0</init>
+	</data>
+	<data  type="number">
+		<id>number_of_ratings</id>
+		<title>numberOfRatings</title>
+		<init>0</init>
+	</data>
+	<data  type="number">
+		<id>rating_sum</id>
+		<title>ratingSum</title>
+		<init>0</init>
 	</data>
 	<data type="boolean">
 		<id>sofer_is_active</id>
@@ -40,8 +51,8 @@
 		<init>true</init>
 	</data>
 	<data type="boolean">
-		<id>sofer_working</id>
-		<title>Working</title>
+		<id>isAvaliable</id>
+		<title>avaliable</title>
 		<init>true</init>
 	</data>
 	<data type="enumeration">
@@ -99,13 +110,6 @@
 			</dataRef>
 			<dataRef>
 				<id>driver_phonenumber</id>
-				<logic>
-					<behavior>editable</behavior>
-					<behavior>required</behavior>
-				</logic>
-			</dataRef>
-			<dataRef>
-				<id>driver_city</id>
 				<logic>
 					<behavior>editable</behavior>
 					<behavior>required</behavior>
@@ -175,10 +179,22 @@
 				</logic>
 			</dataRef>
 			<dataRef>
-				<id>driver_city</id>
+				<id>divers_rating</id>
 				<logic>
 					<behavior>editable</behavior>
 					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>number_of_ratings</id>
+				<logic>
+					<behavior>hidden</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>rating_sum</id>
+				<logic>
+					<behavior>hidden</behavior>
 				</logic>
 			</dataRef>
 			<dataRef>
