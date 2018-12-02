@@ -1,17 +1,21 @@
--pridanie mesta by sme mohli riesit ako enumerat na vyber (Bratislava a vychod :D )
+-sofer moze editovat svoj profil -> fix visible, read hrana
 
--phone number regex na cisla
+-objednavk:
+    -a pozriet profil sofera -> zmenit na read hranu
+    -meno zakaznika musime odstranit
+    -pridat hodnotenie
+    -typ licencie ?
+    
+ -v jazde prepisat prichod na miesto -> read hrana (behaviour na view)
+ 
+-do review pridat describtion
 
--nevidime soferov aky su v systeme (z pohladu zakaznika)
+-review: skopirovat datagroup z vztvorit review
+ 
+ 
 
 
---hladame soferov cez task lebo ak este nie je vytvoreny profil sofera (finish)
---pri vybere sofera zobrazit nejake info sofera cez enumeraciu 
-
-enumeracia nieco: v jednej su mena taxikarov v druhej idecka (treba mat 2 iteracie, ked som si vybral toto meno tak je to toto id)
-
-
-
-
-robime to ze vytvarame objednavku title pomocou zakaznikoveho mena
-musime mergnut jazdu s objednakou kvoli jednoduchsiemu spracovaniu odpoctu kreditu zakaznika
+*znizovanie kreditu o 5 
+*vytvarame objednavku title pomocou zakaznikoveho mena
+*vytvarame soferov pomocou mena :D
+*okomentovat ze vieme zobrazit aktivnych soferov a iba tych kt. sme nevylucili
