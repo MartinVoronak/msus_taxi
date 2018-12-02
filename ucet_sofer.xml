@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+  <!-- ROLES -->
+  <role>
+    <id>zakaznik</id>
+    <name>Zakaznik</name>
+  </role>
+  <role>
+    <id>sofer</id>
+    <name>Sofer</name>
+  </role>
+  <role>
+    <id>system</id>
+    <name>System</name>
+  </role>
+	<!-- DATA -->
+	<data type="text">
+		<id>driver_name</id>
+		<title>Name</title>
+	</data>
+	<data  type="text">
+		<id>driver_surname</id>
+		<title>Surname</title>
+	</data>
+	<data  type="text">
+		<id>driver_car</id>
+		<title>Car</title>
+	</data>
+	<data  type="text">
+		<id>driver_phonenumber</id>
+		<title>Phone number</title>
+	</data>
+	<data  type="number">
+		<id>divers_rating</id>
+		<title>Priemerne hodnotenie &#11088;</title>
+		<init>0</init>
+	</data>
+	<data  type="number">
+		<id>number_of_ratings</id>
+		<title>numberOfRatings</title>
+		<init>0</init>
+	</data>
+	<data  type="number">
+		<id>rating_sum</id>
+		<title>ratingSum</title>
+		<init>0</init>
+	</data>
+	<data type="boolean">
+		<id>sofer_is_active</id>
+		<title>Active</title>
+		<init>true</init>
+	</data>
+	<data type="boolean">
+		<id>isAvaliable</id>
+		<title>avaliable</title>
+		<init>true</init>
+	</data>
+	<data type="enumeration">
+		<id>driver_experience</id>
+		<title>Najazdene</title>
+		<values>&lt;50000</values>
+		<values>&lt;100000</values>
+		<values>&gt;100000</values>
+		<init>&lt;50000</init>
+	</data>
+	<data type="enumeration">
+		<id>driver_licence</id>
+		<title>Licence</title>
+		<values>A</values>
+		<values>B</values>
+		<values>C</values>
+		<values>D</values>
+		<init>B</init>
+	</data>
+  <!-- TRANSITIONS -->
+	<transition>
+		<id>2</id>
+		<x>325</x>
+		<y>72</y>
+		<label>Vyplnit udaje [sofer]</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>sofer</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataGroup>
+			<id>create_drivers_grp</id>
+			<dataRef>
+				<id>driver_name</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_surname</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_car</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_phonenumber</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_experience</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_licence</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+	</transition>
+	<transition>
+		<id>sofer_profil</id>
+		<x>572</x>
+		<y>67</y>
+		<label>Profil [sofer | zakaznik]</label>
+		<roleRef>
+		  <id>sofer</id>
+		  <logic>
+			<perform>true</perform>
+		  </logic>
+		</roleRef>
+		<roleRef>
+		  <id>zakaznik</id>
+		  <logic>
+			<view>true</view>
+		  </logic>
+		</roleRef>
+		<dataGroup>
+			<id>create_drivers_grp</id>
+			<dataRef>
+				<id>driver_name</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_surname</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_car</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_phonenumber</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>divers_rating</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>number_of_ratings</id>
+				<logic>
+					<behavior>hidden</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>rating_sum</id>
+				<logic>
+					<behavior>hidden</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_experience</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>driver_licence</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+	</transition>
+	<!-- PLACES -->
+	<place>
+		<id>1</id>
+		<x>118</x>
+		<y>73</y>
+		<label>inicializacia</label>
+		<tokens>1</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>3</id>
+		<x>447</x>
+		<y>210</y>
+		<label>vytvoreny sofer</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<!-- ARCS -->
+	<arc>
+		<id>5</id>
+		<type>regular</type>
+		<sourceId>1</sourceId>
+		<destinationId>2</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>6</id>
+		<type>regular</type>
+		<sourceId>2</sourceId>
+		<destinationId>3</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>7</id>
+		<type>read</type>
+		<sourceId>3</sourceId>
+		<destinationId>sofer_profil</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+</document>

@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+	<!-- DATA -->
+	<data type="text">
+		<id>travel_from</id>
+		<title>From</title>
+	</data>
+	<data type="text">
+		<id>travel_to</id>
+		<title>To</title>
+	</data>
+	<data type="text">
+		<id>zakaznik_meno</id>
+		<title>Meno</title>
+	</data>
+		<data type="text">
+		<id>zakaznik_stav_uctu</id>
+		<title>stav</title>
+	</data>
+	<data type="text">
+		<id>id_zakaznika</id>
+		<title>id_zak</title>
+	</data>
+	<data type="text">
+		<id>choosen_driver</id>
+		<title>vybtany sofer</title>
+	</data>
+	<data type="number">
+		<id>6666</id>
+		<title>isEnough</title>
+		<init>0</init>
+	</data>
+	<data type="number">
+		<id>6667</id>
+		<title>isNotEnough</title>
+		<init>1</init>
+	</data>
+	<data type="enumeration">
+		<id>drivers</id>
+		<title>Soferovia</title>
+	</data>
+	<data type="multichoice">
+		<id>declined_drivers</id>
+		<title>declined_drivers</title>
+	</data>
+	<data type="text">
+		<id>drivars_car</id>
+		<title>Auto</title>
+	</data>
+	<data type="text">
+		<id>id_jazda</id>
+		<title>nova jazda</title>
+		<init>88</init>
+	</data>
+	<data type="text">
+		<id>id_sofera</id>
+		<title>id sofera</title>
+	</data>
+	<!-- TRANSITIONS -->
+	<transition>
+		<id>7</id>
+		<x>580</x>
+		<y>220</y>
+		<label>vyplnenie udajov [zakaznik]</label>
+		<dataGroup>
+			<id>objednavka_info_grp</id>
+			<dataRef>
+				<id>travel_from</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>travel_to</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>zakaznik_meno</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+		<event type="finish">
+			<id>finish155</id>
+			<actions phase="post">
+				<action>
+                </action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>15</id>
+		<x>900</x>
+		<y>260</y>
+		<label>najdenie sofera [system]</label>
+			<event type="finish">
+			<id>finish434</id>
+			<actions phase="post">
+				<action>
+					name: f.zakaznik_meno,
+					declinedDrivers: f.declined_drivers,
+					driversArray: f.drivers;
+
+					boolean isInDeclined = false;
+					String tempDriverCandidate = "";
+					String tempDecD = "";
+
+					List cases = findCases( { it.title.eq("Sof") } );
+					change driversArray choices {
+                            return "";
+					}
+
+					for ( i in cases) {
+					tempDriverCandidate = i.dataSet.get("driver_name").value;
+					isInDeclined = false;
+
+					for( decDriv in declinedDrivers.choices ){
+						tempDecD = "" + decDriv;
+						if(tempDriverCandidate.equals(tempDecD)){
+							isInDeclined = true;
+						}
+					}
+					if(isInDeclined == false){
+					change driversArray choices {
+                            return driversArray.choices + i.dataSet.get("driver_name").value;
+						}
+					}
+					}
+
+				</action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>34</id>
+		<x>740</x>
+		<y>100</y>
+		<label>kontrola stavu uctu [system]</label>
+		<event type="finish">
+			<id>finish434</id>
+			<actions phase="pre">
+				<action>
+					name: f.zakaznik_meno,
+					isEnough: f.6666,
+					isNotEnough: f.6667,
+					stav: f.zakaznik_stav_uctu;
+
+
+					def usecase = findCase({ it.title.eq(name.value) })
+					def task = findTask({ it.title.defaultValue.eq("zobrazit stav uctu [zakaznik]").and(it.caseId.eq(usecase.getStringId()))});
+
+					def data = getData(task)
+
+
+					if(data["zakaznik_credit"].value > 5) {
+					change isEnough value {
+					return 1 ;
+					}
+					change isNotEnough value {
+					return 0 ;
+					}
+
+					}else{
+					change isEnough value {
+					return 0 ;
+					}
+					change isNotEnough value {
+					return 1 ;
+					}
+					}
+					<!--setData(task, [-->
+						<!--"zakaznik_credit": [-->
+							<!--"value": 1000,-->
+							<!--"type" : "number"-->
+						<!--]-->
+					<!--]);-->
+
+
+				</action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>49</id>
+		<x>1100</x>
+		<y>60</y>
+		<label>vyber sofera [zakaznik]</label>
+		<dataGroup>
+			<id>objednavka_vyber_sof_grp</id>
+			<dataRef>
+				<id>drivers</id>
+				<logic>
+					<behavior>visible</behavior>
+					<behavior>editable</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+		<event type="finish">
+			<id>finish434</id>
+			<actions phase="pre">
+				<action>
+					choosenDriver: f.choosen_driver,
+					car: f.drivars_car,
+					idSofera: f.id_sofera,
+					driversArray: f.drivers;
+
+					String tempDriversName = "";
+
+					change choosenDriver value{
+							return "" + driversArray.value;
+					}
+					change car value{
+							return "";
+					}
+					List cases = findCases( { it.title.eq("Sof") } );
+					def usecaseId = "";
+
+					for ( i in cases) {
+					tempDriversName =  i.dataSet.get("driver_name");
+					if( tempDriversName.equals(choosenDriver.value) ){
+						usecaseId = i.getStringId()
+					}
+					}
+
+					change idSofera value{
+						return usecaseId;
+					}
+
+					def task = findTask({ it.title.defaultValue.eq("Profil [sofer | zakaznik]").and(it.caseId.eq(usecaseId))});
+
+					def data = getData(task)
+
+					change car value{
+							return data["driver_car"].value;
+					}
+					<!--change car value{-->
+							<!--return idSofera.value;-->
+					<!--}-->
+				</action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>80</id>
+		<x>740</x>
+		<y>380</y>
+		<label>skuste neskor [zakaznik]</label>
+	</transition>
+	<transition>
+		<id>87</id>
+		<x>1340</x>
+		<y>380</y>
+		<label>vytvorenie jazdy [system]</label>
+		<event type="finish">
+			<id>finish734</id>
+			<actions phase="post">
+				<action>
+					name: f.zakaznik_meno,
+					idJazda: f.id_jazda;
+					full_name = "jaz_"+ name.value;
+
+					def jazdaCase =  createCase("Team4--jaz", full_name);
+
+					change idJazda value {
+						return jazdaCase.getStringId();
+					}
+                </action>
+				<action>
+					idSofera: f.id_sofera,
+					idJazda: f.id_jazda;
+
+					def taskJazda = findTask({it.title.defaultValue.eq("prichod na miesto [sofer]").and(it.caseId.eq(idJazda.value))});
+
+
+					setData(taskJazda, [
+						"id_sofera": [
+							"value": idSofera.value,
+							"type" : "text"
+						]
+					]);
+
+				</action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>89</id>
+		<x>1340</x>
+		<y>60</y>
+		<label>potvrdit sofera [zakaznik]</label>
+	</transition>
+	<transition>
+		<id>91</id>
+		<x>1220</x>
+		<y>260</y>
+		<label>zamietnut sofera [zakaznik]</label>
+		<event type="finish">
+			<id>finish734</id>
+			<actions phase="post">
+				<action>
+					choosenDriver: f.choosen_driver,
+					declinedDrivers: f.declined_drivers,
+					driversArray: f.drivers;
+
+					change declinedDrivers choices {
+                            return declinedDrivers.choices + choosenDriver.value;
+					}
+
+				</action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>117</id>
+		<x>1220</x>
+		<y>0</y>
+		<label>prezriet profil sofera [zakaznik]</label>
+		<dataGroup>
+			<id>choosen_driver_grp</id>
+			<dataRef>
+				<id>choosen_driver</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>drivars_car</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>zakaznik_meno</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+	</transition>
+	<!-- PLACES -->
+	<place>
+		<id>6</id>
+		<x>420</x>
+		<y>220</y>
+		<label>formular</label>
+		<tokens>1</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>10</id>
+		<x>740</x>
+		<y>220</y>
+		<label>odoslane udaje</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>19</id>
+		<x>1100</x>
+		<y>260</y>
+		<label>najdeny sofer</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>47</id>
+		<x>900</x>
+		<y>100</y>
+		<label>dostacujuci kredit</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>53</id>
+		<x>1220</x>
+		<y>60</y>
+		<label>Prideleny taxik</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>78</id>
+		<x>900</x>
+		<y>380</y>
+		<label>nenajdeny sofer</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>94</id>
+		<x>1340</x>
+		<y>180</y>
+		<label>objednavka potvrdena</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<!-- ARCS -->
+	<arc>
+		<id>9</id>
+		<type>regular</type>
+		<sourceId>6</sourceId>
+		<destinationId>7</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>11</id>
+		<type>regular</type>
+		<sourceId>7</sourceId>
+		<destinationId>10</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>20</id>
+		<type>regular</type>
+		<sourceId>15</sourceId>
+		<destinationId>19</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>36</id>
+		<type>variable</type>
+		<sourceId>34</sourceId>
+		<destinationId>6</destinationId>
+		<multiplicity>6667</multiplicity>
+	</arc>
+	<arc>
+		<id>48</id>
+		<type>variable</type>
+		<sourceId>34</sourceId>
+		<destinationId>47</destinationId>
+		<multiplicity>6666</multiplicity>
+	</arc>
+	<arc>
+		<id>50</id>
+		<type>regular</type>
+		<sourceId>19</sourceId>
+		<destinationId>49</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>54</id>
+		<type>regular</type>
+		<sourceId>49</sourceId>
+		<destinationId>53</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>75</id>
+		<type>regular</type>
+		<sourceId>10</sourceId>
+		<destinationId>34</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>76</id>
+		<type>regular</type>
+		<sourceId>47</sourceId>
+		<destinationId>15</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>79</id>
+		<type>regular</type>
+		<sourceId>15</sourceId>
+		<destinationId>78</destinationId>
+		<multiplicity>0</multiplicity>
+	</arc>
+	<arc>
+		<id>82</id>
+		<type>regular</type>
+		<sourceId>78</sourceId>
+		<destinationId>80</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>92</id>
+		<type>regular</type>
+		<sourceId>53</sourceId>
+		<destinationId>89</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>93</id>
+		<type>regular</type>
+		<sourceId>53</sourceId>
+		<destinationId>91</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>95</id>
+		<type>regular</type>
+		<sourceId>89</sourceId>
+		<destinationId>94</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>96</id>
+		<type>regular</type>
+		<sourceId>94</sourceId>
+		<destinationId>87</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>97</id>
+		<type>regular</type>
+		<sourceId>91</sourceId>
+		<destinationId>47</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>116</id>
+		<type>regular</type>
+		<sourceId>80</sourceId>
+		<destinationId>47</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>118</id>
+		<type>read</type>
+		<sourceId>53</sourceId>
+		<destinationId>117</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+</document>

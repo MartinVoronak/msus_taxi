@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!-- DATA -->
+	<data type="text">
+		<id>id_sofera</id>
+		<title>id sofera</title>
+	</data>
+    <data type="text">
+		<id>zakaznik_name</id>
+		<title>vezies tochto chuja</title>
+	</data>
+    <data type="text">
+		<id>id_review</id>
+		<title>id review</title>
+	</data>
+    <!-- TRANSITIONS -->
+    <transition>
+        <id>8</id>
+        <x>220</x>
+        <y>100</y>
+        <label>prichod na miesto [sofer]</label>
+        <dataGroup>
+			<id>jazda_init_grp</id>
+			<dataRef>
+				<id>id_sofera</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+            <dataRef>
+				<id>zakaznik_name</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+    </transition>
+    <transition>
+        <id>21</id>
+        <x>380</x>
+        <y>220</y>
+        <label>zaciatok jazdy [sofer]</label>
+         <event type="finish">
+			<id>finish7734</id>
+			<actions phase="post">
+				<action>
+					idSofera: f.id_sofera,
+					idReview: f.id_review;
+
+                    def soferCase = findCases( { it.caseId.eq(idSofera.value)} );
+
+
+
+				</action>
+			</actions>
+		</event>
+    </transition>
+    <transition>
+        <id>26</id>
+        <x>540</x>
+        <y>100</y>
+        <label>prichod do destinacie [sofer]</label>
+
+    </transition>
+    <transition>
+        <id>39</id>
+        <x>900</x>
+        <y>100</y>
+        <label>stiahnutie penazi [system]</label>
+    </transition>
+    <transition>
+        <id>53</id>
+        <x>901</x>
+        <y>336</y>
+        <label>vytvorenie review [zakaznik]</label>
+        <event type="finish">
+			<id>finish7734</id>
+			<actions phase="post">
+				<action>
+					name: f.zakaznik_name,
+					idReview: f.id_review;
+					full_name = "rev_"+ name.value;
+
+                    def usecase = findCase({ it.title.eq(name.value) })
+					def taskZak = findTask({ it.title.defaultValue.eq("zobrazit stav uctu [zakaznik]").and(it.caseId.eq(usecase.getStringId()))});
+
+					def data = getData(taskZak)
+
+                    setData(taskZak, [
+						"zakaznik_credit": [
+							"value": data["zakaznik_credit"].value - 5,
+							"type" : "number"
+						]
+					]);
+
+					def revCase =  createCase("Team4--rev", full_name);
+
+					change idReview value {
+						return revCase.getStringId();
+					}
+                </action>
+				<action>
+					idSofera: f.id_sofera,
+					idReview: f.id_review;
+
+					def taskRev = findTask({it.title.defaultValue.eq("chce review [zakaznik]").and(it.caseId.eq(idReview.value))});
+
+
+					setData(taskRev, [
+						"id_sofera": [
+							"value": idSofera.value,
+							"type" : "text"
+						]
+					]);
+
+				</action>
+			</actions>
+		</event>
+    </transition>
+    <!-- PLACES -->
+    <place>
+        <id>4</id>
+        <x>60</x>
+        <y>100</y>
+        <label>vytvorena jazda</label>
+        <tokens>1</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>16</id>
+        <x>220</x>
+        <y>220</y>
+        <label>potvrdenie prichodu</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>24</id>
+        <x>540</x>
+        <y>220</y>
+        <label>priebeh jazdy</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>28</id>
+        <x>740</x>
+        <y>100</y>
+        <label>dokoncena jazda</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>40</id>
+        <x>900</x>
+        <y>220</y>
+        <label>ukoncena objednavka</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <!-- ARCS -->
+    <arc>
+        <id>11</id>
+        <type>regular</type>
+        <sourceId>4</sourceId>
+        <destinationId>8</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>17</id>
+        <type>regular</type>
+        <sourceId>8</sourceId>
+        <destinationId>16</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>22</id>
+        <type>regular</type>
+        <sourceId>16</sourceId>
+        <destinationId>21</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>25</id>
+        <type>regular</type>
+        <sourceId>21</sourceId>
+        <destinationId>24</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>27</id>
+        <type>regular</type>
+        <sourceId>24</sourceId>
+        <destinationId>26</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>29</id>
+        <type>regular</type>
+        <sourceId>26</sourceId>
+        <destinationId>28</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>41</id>
+        <type>regular</type>
+        <sourceId>28</sourceId>
+        <destinationId>39</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>42</id>
+        <type>regular</type>
+        <sourceId>39</sourceId>
+        <destinationId>40</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>54</id>
+        <type>regular</type>
+        <sourceId>40</sourceId>
+        <destinationId>53</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+</document>
