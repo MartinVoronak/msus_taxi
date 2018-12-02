@@ -43,12 +43,46 @@
         <x>380</x>
         <y>220</y>
         <label>zaciatok jazdy [sofer]</label>
+         <event type="finish">
+			<id>finish7734</id>
+			<actions phase="pre">
+				<action>
+					idSofera: f.id_sofera;
+
+					def taskSoferProfile = findTask({it.title.defaultValue.eq("Profil [sofer | zakaznik]").and(it.caseId.eq(idSofera.value))});
+
+					setData(taskSoferProfile, [
+                    "sofer_is_active": [
+							"value": false,
+							"type" : "number"
+						]
+					]);
+				</action>
+			</actions>
+		</event>
     </transition>
     <transition>
         <id>26</id>
         <x>540</x>
         <y>100</y>
         <label>prichod do destinacie [sofer]</label>
+        <event type="finish">
+			<id>finish7734</id>
+			<actions phase="pre">
+				<action>
+					idSofera: f.id_sofera;
+
+					def taskSoferProfile = findTask({it.title.defaultValue.eq("Profil [sofer | zakaznik]").and(it.caseId.eq(idSofera.value))});
+
+					setData(taskSoferProfile, [
+                    "sofer_is_active": [
+							"value": true,
+							"type" : "number"
+						]
+					]);
+				</action>
+			</actions>
+		</event>
 
     </transition>
     <transition>

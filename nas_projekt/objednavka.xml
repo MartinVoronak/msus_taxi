@@ -43,6 +43,14 @@
 		<id>declined_drivers</id>
 		<title>declined_drivers</title>
 	</data>
+	<data type="number">
+		<id>9456</id>
+		<title>found</title>
+	</data>
+	<data type="number">
+		<id>9457</id>
+		<title>notFound</title>
+	</data>
 	<data type="text">
 		<id>drivars_car</id>
 		<title>Auto</title>
@@ -101,11 +109,15 @@
 		<label>najdenie sofera [system]</label>
 			<event type="finish">
 			<id>finish434</id>
-			<actions phase="post">
+			<actions phase="pre">
 				<action>
 					name: f.zakaznik_meno,
 					declinedDrivers: f.declined_drivers,
+					found: f.9456,
+					notFound: f.9457,
 					driversArray: f.drivers;
+
+					int poc = 0;
 
 					boolean isInDeclined = false;
 					String tempDriverCandidate = "";
@@ -122,14 +134,33 @@
 
 					for( decDriv in declinedDrivers.choices ){
 						tempDecD = "" + decDriv;
+
 						if(tempDriverCandidate.equals(tempDecD)){
 							isInDeclined = true;
 						}
 					}
 					if(isInDeclined == false){
-					change driversArray choices {
+						if(i.dataSet.get("sofer_is_active").value){
+						poc++;
+							change driversArray choices {
                             return driversArray.choices + i.dataSet.get("driver_name").value;
 						}
+					}
+					}
+					}
+					if(poc > 0 ){
+						change found value {
+						return 1;
+					}
+					change notFound value {
+						return 0;
+					}
+					}else {
+						change found value {
+						return 0;
+					}
+					change notFound value {
+						return 1;
 					}
 					}
 
@@ -420,10 +451,10 @@
 	</arc>
 	<arc>
 		<id>20</id>
-		<type>regular</type>
+		<type>variable</type>
 		<sourceId>15</sourceId>
 		<destinationId>19</destinationId>
-		<multiplicity>1</multiplicity>
+		<multiplicity>9456</multiplicity>
 	</arc>
 	<arc>
 		<id>36</id>
@@ -469,10 +500,10 @@
 	</arc>
 	<arc>
 		<id>79</id>
-		<type>regular</type>
+		<type>variable</type>
 		<sourceId>15</sourceId>
 		<destinationId>78</destinationId>
-		<multiplicity>0</multiplicity>
+		<multiplicity>9457</multiplicity>
 	</arc>
 	<arc>
 		<id>82</id>

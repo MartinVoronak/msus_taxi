@@ -94,12 +94,6 @@
 		</dataGroup>
 	</transition>
 	<transition>
-		<id>7</id>
-		<x>220</x>
-		<y>380</y>
-		<label>zobrazit historiu objednavok [zakaznik]</label>
-	</transition>
-	<transition>
 		<id>11</id>
 		<x>940</x>
 		<y>180</y>
@@ -272,13 +266,6 @@
 		<type>read</type>
 		<sourceId>1</sourceId>
 		<destinationId>4</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>8</id>
-		<type>read</type>
-		<sourceId>1</sourceId>
-		<destinationId>7</destinationId>
 		<multiplicity>1</multiplicity>
 	</arc>
 	<arc>
