@@ -1,192 +1,155 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
-  <!-- ROLES -->
-  <role>
-    <id>zakaznik</id>
-    <name>Zakaznik</name>
-  </role>
-  <role>
-    <id>sofer</id>
-    <name>Sofer</name>
-  </role>
-  <role>
-    <id>system</id>
-    <name>System</name>
-  </role>
-	<!-- DATA -->
-	<data type="boolean">
-		<id>sofer_is_there_start</id>
-		<title>Is there</title>
-		<init>false</init>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!-- DATA -->
+	<data type="text">
+		<id>id_sofera</id>
+		<title>id sofera</title>
 	</data>
-	<data type="boolean">
-		<id>sofer_is_there_finish</id>
-		<title>Finished</title>
-		<init>false</init>
-	</data>
-	<data  type="number">
-		<id>system_price</id>
-		<title>Price</title>
-		<init>10</init>
-	</data>
-  <!-- TRANSITIONS -->
-	<transition>
-		<id>8</id>
-		<x>220</x>
-		<y>100</y>
-		<label>prichod na miesto [sofer]</label>
-    <roleRef>
-      <id>sofer</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
-	</transition>
-	<transition>
-		<id>21</id>
-		<x>380</x>
-		<y>220</y>
-		<label>zaciatok jazdy [sofer]</label>
-    <roleRef>
-      <id>sofer</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
-	</transition>
-	<transition>
-		<id>26</id>
-		<x>540</x>
-		<y>100</y>
-		<label>prichod do destinacie [sofer]</label>
-    <roleRef>
-      <id>sofer</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
-	</transition>
-	<transition>
-		<id>39</id>
-		<x>900</x>
-		<y>100</y>
-		<label>stiahnutie penazi [system]</label>
-	</transition>
-	<transition>
-		<id>53</id>
-		<x>901</x>
-		<y>336</y>
-		<label>vytvorenie review [zakaznik]</label>
-    <roleRef>
-      <id>zakaznik</id>
-      <logic>
-        <perform>true</perform>
-      </logic>
-    </roleRef>
-	</transition>
-	<!-- PLACES -->
-	<place>
-		<id>4</id>
-		<x>60</x>
-		<y>100</y>
-		<label>vytvorena jazda</label>
-		<tokens>1</tokens>
-		<static>false</static>
-	</place>
-	<place>
-		<id>16</id>
-		<x>220</x>
-		<y>220</y>
-		<label>potvrdenie prichodu</label>
-		<tokens>0</tokens>
-		<static>false</static>
-	</place>
-	<place>
-		<id>24</id>
-		<x>540</x>
-		<y>220</y>
-		<label>priebeh jazdy</label>
-		<tokens>0</tokens>
-		<static>false</static>
-	</place>
-	<place>
-		<id>28</id>
-		<x>740</x>
-		<y>100</y>
-		<label>dokoncena jazda</label>
-		<tokens>0</tokens>
-		<static>false</static>
-	</place>
-	<place>
-		<id>40</id>
-		<x>900</x>
-		<y>220</y>
-		<label>ukoncena objednavka</label>
-		<tokens>0</tokens>
-		<static>false</static>
-	</place>
-	<!-- ARCS -->
-	<arc>
-		<id>11</id>
-		<type>regular</type>
-		<sourceId>4</sourceId>
-		<destinationId>8</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>17</id>
-		<type>regular</type>
-		<sourceId>8</sourceId>
-		<destinationId>16</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>22</id>
-		<type>regular</type>
-		<sourceId>16</sourceId>
-		<destinationId>21</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>25</id>
-		<type>regular</type>
-		<sourceId>21</sourceId>
-		<destinationId>24</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>27</id>
-		<type>regular</type>
-		<sourceId>24</sourceId>
-		<destinationId>26</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>29</id>
-		<type>regular</type>
-		<sourceId>26</sourceId>
-		<destinationId>28</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>41</id>
-		<type>regular</type>
-		<sourceId>28</sourceId>
-		<destinationId>39</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>42</id>
-		<type>regular</type>
-		<sourceId>39</sourceId>
-		<destinationId>40</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
-	<arc>
-		<id>54</id>
-		<type>regular</type>
-		<sourceId>40</sourceId>
-		<destinationId>53</destinationId>
-		<multiplicity>1</multiplicity>
-	</arc>
+    <!-- TRANSITIONS -->
+    <transition>
+        <id>8</id>
+        <x>220</x>
+        <y>100</y>
+        <label>prichod na miesto [sofer]</label>
+    </transition>
+    <transition>
+        <id>21</id>
+        <x>380</x>
+        <y>220</y>
+        <label>zaciatok jazdy [sofer]</label>
+    </transition>
+    <transition>
+        <id>26</id>
+        <x>540</x>
+        <y>100</y>
+        <label>prichod do destinacie [sofer]</label>
+        <dataGroup>
+			<id>jazda_init_grp</id>
+			<dataRef>
+				<id>id_sofera</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+    </transition>
+    <transition>
+        <id>39</id>
+        <x>900</x>
+        <y>100</y>
+        <label>stiahnutie penazi [system]</label>
+    </transition>
+    <transition>
+        <id>53</id>
+        <x>901</x>
+        <y>336</y>
+        <label>vytvorenie review [zakaznik]</label>
+    </transition>
+    <!-- PLACES -->
+    <place>
+        <id>4</id>
+        <x>60</x>
+        <y>100</y>
+        <label>vytvorena jazda</label>
+        <tokens>1</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>16</id>
+        <x>220</x>
+        <y>220</y>
+        <label>potvrdenie prichodu</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>24</id>
+        <x>540</x>
+        <y>220</y>
+        <label>priebeh jazdy</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>28</id>
+        <x>740</x>
+        <y>100</y>
+        <label>dokoncena jazda</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>40</id>
+        <x>900</x>
+        <y>220</y>
+        <label>ukoncena objednavka</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <!-- ARCS -->
+    <arc>
+        <id>11</id>
+        <type>regular</type>
+        <sourceId>4</sourceId>
+        <destinationId>8</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>17</id>
+        <type>regular</type>
+        <sourceId>8</sourceId>
+        <destinationId>16</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>22</id>
+        <type>regular</type>
+        <sourceId>16</sourceId>
+        <destinationId>21</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>25</id>
+        <type>regular</type>
+        <sourceId>21</sourceId>
+        <destinationId>24</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>27</id>
+        <type>regular</type>
+        <sourceId>24</sourceId>
+        <destinationId>26</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>29</id>
+        <type>regular</type>
+        <sourceId>26</sourceId>
+        <destinationId>28</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>41</id>
+        <type>regular</type>
+        <sourceId>28</sourceId>
+        <destinationId>39</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>42</id>
+        <type>regular</type>
+        <sourceId>39</sourceId>
+        <destinationId>40</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>54</id>
+        <type>regular</type>
+        <sourceId>40</sourceId>
+        <destinationId>53</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
 </document>
